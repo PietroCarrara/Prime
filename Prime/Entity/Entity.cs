@@ -44,6 +44,17 @@ namespace Prime
 			return c;
 		}
 
+		public T GetComponent<T>() where T : Component
+		{
+			foreach(var c in components)
+			{
+				if (c is T)
+					return (T) c;
+			}
+
+			return null;
+		}
+
 		public void Destroy()
 		{
 			destroyQueue.AddRange(components);
