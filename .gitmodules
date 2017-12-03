@@ -1,0 +1,3 @@
+[submodule "Prime-Samples"]
+	path = Prime-Samples
+	url = ./Prime-Samples/.git
