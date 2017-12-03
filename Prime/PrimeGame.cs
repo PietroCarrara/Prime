@@ -76,6 +76,7 @@ namespace Prime
             base.Update(gameTime);
 
 			Time.GameTime = gameTime;
+			Input.Update();
 
 			activeScene.Update();
         }
