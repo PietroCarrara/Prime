@@ -16,6 +16,8 @@ namespace Prime
 			}
 		}
 
+		private List<Component> destroyQueue = new List<Component>();
+
 		public Scene Scene;
 
 		private Vector2 pos;
@@ -42,6 +44,18 @@ namespace Prime
 			return c;
 		}
 
+		public void Destroy()
+		{
+			destroyQueue.AddRange(components);
+
+			Scene.Destroy(this);
+		}
+
+		public void Destroy(Component c)
+		{
+			destroyQueue.Add(c);
+		}
+
 		public virtual void Initialize() 
 		{
 
@@ -61,6 +75,17 @@ namespace Prime
 			{
 				c.Update();
 			}
+
+			foreach (var c in destroyQueue)
+			{
+				c.OnDestroy();
+				components.Remove(c);
+			}
+
+			destroyQueue.Clear();
 		}
+
+		public virtual void OnDestroy()
+		{  }
 	}
 }

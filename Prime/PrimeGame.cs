@@ -79,7 +79,7 @@ namespace Prime
 			Input.Update();
 
 			activeScene.Update();
-        }
+		}
 
         protected override void Draw(GameTime gameTime)
         {

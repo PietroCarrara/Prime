@@ -21,5 +21,8 @@ namespace Prime
 		{
 
 		}
+
+		public virtual void OnDestroy()
+		{  }
 	}
 }

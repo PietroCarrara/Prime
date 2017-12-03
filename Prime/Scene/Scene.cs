@@ -12,6 +12,8 @@ namespace Prime
 
 		public ContentManager Content;
 
+		private List<Entity> destroyQueue = new List<Entity>();
+		
 		private List<Entity> entities = new List<Entity>();
 		public List<Entity> Entities
 		{
@@ -41,6 +43,11 @@ namespace Prime
 			return e;
 		}
 
+		public void Destroy(Entity e)
+		{
+			this.destroyQueue.Add(e);
+		}
+
 		public virtual void Initialize()
 		{ 
 			this.Cam = new Camera(this.Game.ViewportAdapter);
@@ -60,6 +67,14 @@ namespace Prime
 			{
 				e.Update();
 			}
+
+			foreach(var e in destroyQueue)
+			{
+				e.OnDestroy();
+				entities.Remove(e);
+			}
+
+			destroyQueue.Clear();
 		}
 	}
 }
