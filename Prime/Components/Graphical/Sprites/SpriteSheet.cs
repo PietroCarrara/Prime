@@ -11,7 +11,7 @@ namespace Prime.Graphics
 {
     public class SpriteSheet : Sprite
     {
-        private AnimatedSprite curr;
+        private SpriteSheetAnimation curr;
 
         private SpriteSheetAnimationFactory factory;
 
@@ -29,11 +29,11 @@ namespace Prime.Graphics
 		{
 			get
 			{
-				return curr.TextureRegion.Width * this.scale.X;
+				return curr.CurrentFrame.Width * this.scale.X;
 			}
 			set
 			{
-				scale.X = value / curr.TextureRegion.Width;
+				scale.X = value / curr.CurrentFrame.Width;
 			}
 		}
 
@@ -41,11 +41,11 @@ namespace Prime.Graphics
 		{
 			get
 			{
-				return curr.TextureRegion.Height * this.scale.Y;
+				return curr.CurrentFrame.Height * this.scale.Y;
 			}
 			set
 			{
-				scale.Y = value / curr.TextureRegion.Height;
+				scale.Y = value / curr.CurrentFrame.Height;
 			}
 		}
 
@@ -74,12 +74,16 @@ namespace Prime.Graphics
             }
 
             factory.Add(name, new SpriteSheetAnimationData(frames, frameDuration, loop, reversed, pingPong));
-        }
+		}
 
-        public void Play(string name)
+
+        public void Play(string name, System.Action post = default(System.Action))
         {
-            curr = new AnimatedSprite(factory, name);
-            curr.Play(name);
+            curr = factory.Create(name);
+
+			curr.OnCompleted = post;
+
+            curr.Play();
         }
 
         public override void Update()
@@ -87,8 +91,8 @@ namespace Prime.Graphics
             base.Update();
 
 			var scale = new Vector2(Width, Height);
-
-            curr.Update(Time.DetlaTime);
+				
+			curr.Update(Time.DetlaTime);
 
 			this.Width = scale.X;
 			this.Height = scale.Y;
@@ -99,7 +103,7 @@ namespace Prime.Graphics
 			sp.Draw(
 					texture: Tex,
 					position: Owner.Position,
-					sourceRectangle: curr.TextureRegion.Bounds,
+					sourceRectangle: curr.CurrentFrame.Bounds,
 					color: Color.White,
 					scale: scale
 				   );
