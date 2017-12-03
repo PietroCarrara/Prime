@@ -35,6 +35,7 @@
     <Compile Include="Components\Graphical\Camera\Camera.cs" />
     <Compile Include="Components\Graphical\Sprites\Sprite.cs" />
     <Compile Include="Systems\Input.cs" />
+    <Compile Include="Components\Graphical\Sprites\SpriteSheet.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended">
