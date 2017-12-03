@@ -56,7 +56,7 @@ namespace Prime
         {
             base.Initialize();
 
-			this.viewPortAdapter = new MonoGame.Extended.ViewportAdapters.BoxingViewportAdapter(this.Window, this.graphics, 1280, 720);
+			this.viewPortAdapter = new BoxingViewportAdapter(this.Window, this.graphics, 1280, 720);
 
 			// Initialize the first scene
 			activeScene.Initialize();
