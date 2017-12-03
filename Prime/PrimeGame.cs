@@ -87,7 +87,7 @@ namespace Prime
 
 			Time.GameTime = gameTime;
 
-			drawer.Begin(transformMatrix: activeScene.Cam.GetViewMatrix());
+			drawer.Begin(transformMatrix: activeScene.Cam.GetViewMatrix(), samplerState: SamplerState.PointClamp);
 
 			activeScene.Draw(drawer);
 

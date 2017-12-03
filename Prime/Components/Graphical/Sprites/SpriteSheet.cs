@@ -25,6 +25,30 @@ namespace Prime.Graphics
             frames = atlas.RegionCount;
         }
 
+		public override float Width
+		{
+			get
+			{
+				return curr.TextureRegion.Width * this.scale.X;
+			}
+			set
+			{
+				scale.X = value / curr.TextureRegion.Width;
+			}
+		}
+
+		public override float Height
+		{
+			get
+			{
+				return curr.TextureRegion.Height * this.scale.Y;
+			}
+			set
+			{
+				scale.Y = value / curr.TextureRegion.Height;
+			}
+		}
+
         public void Add(string name, int start, int end, float frameDuration = 0.2f, bool loop = true, bool reversed = false, bool pingPong = false)
         {
 			var frames = new int[end - start];
@@ -55,14 +79,19 @@ namespace Prime.Graphics
         public void Play(string name)
         {
             curr = new AnimatedSprite(factory, name);
-//            curr.Play(name);
+            curr.Play(name);
         }
 
         public override void Update()
         {
             base.Update();
 
+			var scale = new Vector2(Width, Height);
+
             curr.Update(Time.DetlaTime);
+
+			this.Width = scale.X;
+			this.Height = scale.Y;
         }
 
         public override void Draw(SpriteBatch sp)
