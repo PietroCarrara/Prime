@@ -76,14 +76,32 @@ namespace Prime.Graphics
             factory.Add(name, new SpriteSheetAnimationData(frames, frameDuration, loop, reversed, pingPong));
 		}
 
-
         public void Play(string name, System.Action post = default(System.Action))
         {
-            curr = factory.Create(name);
+			// Don't rewind the animation if it's already playing
+			if(curr != null && name == curr.Name)
+				return;
 
-			curr.OnCompleted = post;
+            var anim = factory.Create(name);
 
-            curr.Play();
+			if (!anim.IsLooping && curr != null)
+			{		
+				var currName = curr.Name;
+				var currPost = curr.OnCompleted;
+
+				anim.OnCompleted = () =>
+				{
+					post?.Invoke();
+					this.Play(currName, currPost);
+				};
+			} 
+			else
+			{
+				anim.OnCompleted = post;	
+			}
+
+			curr = anim;
+			curr.Play();
         }
 
         public override void Update()
