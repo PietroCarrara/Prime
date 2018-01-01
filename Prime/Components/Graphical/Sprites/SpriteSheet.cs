@@ -21,8 +21,10 @@ namespace Prime.Graphics
             : base(tex)
         {
             factory = new SpriteSheetAnimationFactory(atlas);
-
+			
             frames = atlas.RegionCount;
+
+			Origin = new Vector2(factory.Frames[0].Width / 2f, factory.Frames[0].Height / 2f);
         }
 
 		public override float Width
@@ -123,8 +125,10 @@ namespace Prime.Graphics
 					position: Owner.Position,
 					sourceRectangle: curr.CurrentFrame.Bounds,
 					color: Color.White,
-					scale: scale
-				   );
+					scale: scale,
+					origin: Origin, 
+					rotation: Rotation
+					);
         }
     }
 }

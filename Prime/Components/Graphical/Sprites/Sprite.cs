@@ -3,44 +3,63 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Prime.Graphics
 {
-	public class Sprite : Component
-	{
-		public Texture2D Tex;
+    public class Sprite : Component
+    {
+        public Texture2D Tex;
 
-		public Sprite(Texture2D tex)
-		{
-			Tex = tex;
-		}
+        public Vector2 Origin;
 
-		protected Vector2 scale = Vector2.One;
+        public float Rotation;
 
-		public virtual float Width
-		{
-			get
-			{
-				return Tex.Width * scale.X;
-			}
-			set
-			{
-				scale.X = value / Tex.Width;
-			}
-		}
+        public Sprite(Texture2D tex)
+        {
+            Tex = tex;
 
-		public virtual float Height
-		{
-			get
-			{
-				return Tex.Height * scale.Y;
-			}
-			set
-			{
-				scale.Y = value / Tex.Height;
-			}
-		}
+            Origin = new Vector2(tex.Width / 2f, tex.Height / 2f);
+        }
 
-		public override void Draw(SpriteBatch sp)
-		{
-			sp.Draw(Tex, Owner.Position, Color.White);
-		}
-	}
+        public Sprite(Texture2D tex, Vector2 origin)
+        {
+            Tex = tex;
+
+            Origin = origin;
+        }
+
+        protected Vector2 scale = Vector2.One;
+
+        public virtual float Width
+        {
+            get
+            {
+                return Tex.Width * scale.X;
+            }
+            set
+            {
+                scale.X = value / Tex.Width;
+            }
+        }
+
+        public virtual float Height
+        {
+            get
+            {
+                return Tex.Height * scale.Y;
+            }
+            set
+            {
+                scale.Y = value / Tex.Height;
+            }
+        }
+
+        public override void Draw(SpriteBatch sp)
+        {
+            sp.Draw(
+					texture: Tex,
+					position: Owner.Position, 
+					color: Color.White, 
+					origin: Origin, 
+					rotation: Rotation
+					);
+        }
+    }
 }
