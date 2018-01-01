@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -50,6 +49,8 @@ namespace Prime
 			activeScene.Game = this;
 			activeScene.Content = new ContentManager(Content.ServiceProvider);
 			activeScene.Content.RootDirectory = "Content";
+
+			base.IsMouseVisible = true;
         }
 
         protected override void Initialize()
