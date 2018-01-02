@@ -36,8 +36,10 @@
     <Compile Include="Components\Graphical\Sprites\Sprite.cs" />
     <Compile Include="Systems\Input.cs" />
     <Compile Include="Components\Graphical\Sprites\SpriteSheet.cs" />
-	<Compile Include="Helpers\Vector2Extensions.cs" />
+    <Compile Include="Helpers\Vector2Extensions.cs" />
     <Compile Include="Components\Collision\Shape.cs" />
+    <Compile Include="Components\Collision\RectangleCollider.cs" />
+    <Compile Include="Components\Collision\CircleCollider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended">
