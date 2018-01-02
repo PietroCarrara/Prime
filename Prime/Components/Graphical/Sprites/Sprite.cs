@@ -18,6 +18,9 @@ namespace Prime.Graphics
             Origin = new Vector2(tex.Width / 2f, tex.Height / 2f);
         }
 
+		internal Sprite()
+		{  }
+
         public Sprite(Texture2D tex, Vector2 origin)
         {
             Tex = tex;
@@ -58,7 +61,8 @@ namespace Prime.Graphics
 					position: Owner.Position, 
 					color: Color.White, 
 					origin: Origin, 
-					rotation: Rotation
+					rotation: Rotation,
+					scale: scale
 					);
         }
     }
