@@ -37,9 +37,9 @@ namespace Prime
 		{
 			this.components.Add(c);
 
-			c.Initialize();
-			
 			c.Owner = this;
+
+			c.Initialize();
 
 			return c;
 		}
