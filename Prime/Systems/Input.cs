@@ -146,7 +146,7 @@ namespace Prime
 		public static Vector2 MousePosition(Camera c)
 		{
 			
-			return c.ViewportAdapter.PointToScreen(mouse.Position).ToVector2() - c.Position - new Vector2(1280 / 2f, 720 / 2f);
+			return c.ViewportAdapter.PointToScreen(mouse.Position).ToVector2() + c.Position - new Vector2(1280 / 2f, 720 / 2f);
 		}
 	}
 

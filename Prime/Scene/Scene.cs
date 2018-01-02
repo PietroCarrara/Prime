@@ -12,6 +12,8 @@ namespace Prime
 
 		public ContentManager Content;
 
+		public Color ClearColor = Color.CornflowerBlue;
+
 		private List<Entity> destroyQueue = new List<Entity>();
 		
 		private List<Entity> entities = new List<Entity>();

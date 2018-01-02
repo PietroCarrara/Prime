@@ -84,7 +84,7 @@ namespace Prime
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(activeScene.ClearColor);
 
 			Time.GameTime = gameTime;
 
