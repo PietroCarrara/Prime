@@ -40,6 +40,7 @@
     <Compile Include="Components\Collision\Shape.cs" />
     <Compile Include="Components\Collision\RectangleCollider.cs" />
     <Compile Include="Components\Collision\CircleCollider.cs" />
+    <Compile Include="Components\Graphical\Sprites\Prototyping\RectangleSprite.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended">
