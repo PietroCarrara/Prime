@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Prime
 {
@@ -9,5 +10,7 @@ namespace Prime
 		public Action<Entity> OnCollisionEnter;
 
 		public Action<Entity> OnCollisionExit;
+
+		internal List<Shape> IsCollidingWith = new List<Shape>();
 	}
 }

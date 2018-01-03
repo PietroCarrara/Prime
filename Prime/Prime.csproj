@@ -41,6 +41,8 @@
     <Compile Include="Components\Collision\RectangleCollider.cs" />
     <Compile Include="Components\Collision\CircleCollider.cs" />
     <Compile Include="Components\Graphical\Sprites\Prototyping\RectangleSprite.cs" />
+    <Compile Include="Systems\Colliders.cs" />
+    <Compile Include="Helpers\Randomic.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended">
