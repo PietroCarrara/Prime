@@ -19,7 +19,7 @@ namespace Prime
 
         internal static void Update()
         {
-            int i = 0;
+            int i = 1;
 
             foreach (var shape in colliders)
             {
@@ -46,9 +46,6 @@ namespace Prime
 
                     s1.IsCollidingWith.Add(s2);
                 }
-
-				s1.OnCollisionEnter?.Invoke(s1.Owner);
-				s1.OnCollisionExit?.Invoke(s1.Owner);
             }
             else if (s1.IsCollidingWith.Contains(s2))
             {
