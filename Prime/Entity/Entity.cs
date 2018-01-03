@@ -5,7 +5,7 @@ using MonoGame.Extended;
 
 namespace Prime
 {
-	public class Entity : IMovable
+	public class Entity
 	{
 		private List<Component> components = new List<Component>();
 		public List<Component> Components
@@ -20,18 +20,7 @@ namespace Prime
 
 		public Scene Scene;
 
-		private Vector2 pos;
-		public Vector2 Position
-		{
-			get
-			{
-				return pos;
-			}
-			set 
-			{
-				pos = value;
-			}
-		}
+		public Vector2 Position;
 
 		public T Add<T>(T c) where T : Component
 		{
