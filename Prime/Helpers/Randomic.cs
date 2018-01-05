@@ -6,7 +6,7 @@ namespace Prime
 
 		public static bool Chanche(int chance)
 		{
-			return chance > r.Next(100);
+			return  r.Next(100) < chance;
 		}
 
 		private static int Rand(int max)

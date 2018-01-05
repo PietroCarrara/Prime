@@ -26,9 +26,6 @@ namespace Prime.Graphics
 		{
 			base.Initialize();
 
-			if (this.Owner == null)
-				throw new System.Exception();
-
 			var tex = new Texture2D(this.Owner.Scene.Game.GraphicsDevice, width, height);
 
 			var color = new Color[width * height];
