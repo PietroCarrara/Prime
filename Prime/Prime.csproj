@@ -45,6 +45,9 @@
     <Compile Include="Helpers\Randomic.cs" />
     <Compile Include="Components\Graphical\Text\Text.cs" />
     <Compile Include="Components\Graphical\Text\Alignment.cs" />
+    <Compile Include="Components\Graphical\Camera\Camera2D.cs" />
+    <Compile Include="Components\Graphical\Camera\FollowTarget.cs" />
+    <Compile Include="Components\Graphical\Camera\DelayedFollowTarget.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended">

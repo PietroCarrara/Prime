@@ -29,7 +29,7 @@ namespace Prime
 		// for deletion
 		private List<Entity> deletion = new List<Entity>();
 
-		public Camera Cam;
+		public Camera Cam = new Camera();
 
 		public Scene()
 		{  }
@@ -51,8 +51,10 @@ namespace Prime
 		}
 
 		public virtual void Initialize()
-		{ 
-			this.Cam = new Camera(this.Game.ViewportAdapter);
+		{
+			this.Cam.Camera2D = new Camera2D(this.Game.ViewportAdapter);
+			this.Cam.Position = new Vector2(1280 / 2f, 720 / 2f);
+			this.Cam.Initialize();
 		}
 
 		public void Draw(SpriteBatch sp)
@@ -69,6 +71,8 @@ namespace Prime
 			{
 				e.Update();
 			}
+
+			Cam.Update();
 
 			foreach(var e in destroyQueue)
 			{

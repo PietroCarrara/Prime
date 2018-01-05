@@ -1,35 +1,18 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
-using MonoGame.Extended.ViewportAdapters;
 
 namespace Prime
 {
-	public class Camera : Camera2D
+	public class Camera : Entity
 	{
-		public ViewportAdapter ViewportAdapter;
+		public Prime.Camera2D Camera2D;
 
-		public Camera(GraphicsDevice graphicsDevice) : base(graphicsDevice)
-        {  }
-
-        public Camera(ViewportAdapter viewportAdapter) : base(viewportAdapter)
+		public override void Update()
 		{
-			this.ViewportAdapter = viewportAdapter;
-		}
+			base.Update();
 
-		
-
-		public new Vector2 Position
-		{
-			set
-			{
-				base.Position = value - new Vector2(1280 / 2f, 720 / 2f);
-			}
-			
-			get
-			{
-				return base.Position + new Vector2(1280 / 2f, 720 / 2f);
-			}
+ 			Camera2D.Position = this.Position;
 		}
 	}
 }
+
