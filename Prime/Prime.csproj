@@ -43,6 +43,8 @@
     <Compile Include="Components\Graphical\Sprites\Prototyping\RectangleSprite.cs" />
     <Compile Include="Systems\Colliders.cs" />
     <Compile Include="Helpers\Randomic.cs" />
+    <Compile Include="Components\Graphical\Text\Text.cs" />
+    <Compile Include="Components\Graphical\Text\Alignment.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended">
