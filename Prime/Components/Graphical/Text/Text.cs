@@ -1,76 +1,20 @@
-using Microsoft.Xna.Framework;
+using Prime;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Prime
 {
 	public class Text : Entity
 	{
-		private string content;
-		public string Content
-		{
-			get
-			{
-				return this.content;
-			}
-			set
-			{
-				this.content = value;
-				
-				var size = Vector2.Zero;
+		public TextComponent TextComponent;
 
-				switch(this.Alignment)
-				{
-					case Alignment.Left:
-						this.Origin = Vector2.Zero;
-						break;
-					case Alignment.Center:
-						size = Font.MeasureString(value);
-						this.Origin.X = -size.X / 2f;
-						break;
-					case Alignment.Right:
-						size = Font.MeasureString(value);
-						this.Origin.X = -size.X;
-						break;
-				}
-			}
+		public Text(string content, SpriteFont font)
+		{
+			this.TextComponent = new TextComponent(content, font);
 		}
 
-		public SpriteFont Font;
-
-		public Color Color = Color.White;
-
-		public Vector2 Origin = Vector2.Zero;
-
-		private Alignment alignment = Alignment.None;
-		public Alignment Alignment
+		public override void Initialize()
 		{
-			get
-			{
-				return this.alignment;
-			}
-			set
-			{
-				this.alignment = value;
-				this.Content = this.Content;
-			}
-		}
-
-		public Text(string text, SpriteFont font)
-		{
-			this.Content = text;
-
-			this.Font = font;
-		}
-
-		public override void Draw(SpriteBatch sp)
-		{
-			base.Draw(sp);
-
-			sp.DrawString(
-					this.Font,
-					this.Content,
-					this.Position + this.Origin,
-					this.Color);
+			this.Add(TextComponent);
 		}
 	}
 }
