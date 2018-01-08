@@ -11,6 +11,8 @@ namespace Prime.Graphics
 
         public float Rotation;
 
+		public bool FlipX, FlipY;
+
         public Sprite(Texture2D tex)
         {
             Tex = tex;
@@ -56,13 +58,27 @@ namespace Prime.Graphics
 
         public override void Draw(SpriteBatch sp)
         {
+			var ef = SpriteEffects.None;
+
+			if(FlipX)
+				ef = SpriteEffects.FlipHorizontally;
+			
+			if(FlipY)
+			{
+				if(ef != SpriteEffects.None)
+					ef |= SpriteEffects.FlipVertically;
+				else
+					ef = SpriteEffects.FlipVertically;
+			}
+
             sp.Draw(
 					texture: Tex,
 					position: Owner.Position, 
 					color: Color.White, 
 					origin: Origin, 
 					rotation: Rotation,
-					scale: scale
+					scale: scale,
+					effects: ef
 					);
         }
     }
