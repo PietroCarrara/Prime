@@ -120,29 +120,9 @@ namespace Prime.Graphics
 
         public override void Draw(SpriteBatch sp)
         {
-			var ef = SpriteEffects.None;
-
-			if(FlipX)
-				ef = SpriteEffects.FlipHorizontally;
-			
-			if(FlipY)
-			{
-				if(ef != SpriteEffects.None)
-					ef |= SpriteEffects.FlipVertically;
-				else
-					ef = SpriteEffects.FlipVertically;
-			}
-
-            sp.Draw(
-					texture: Tex,
-					position: Owner.Position, 
-					color: Color.White, 
-					origin: Origin, 
-					rotation: Rotation,
-					scale: scale,
-					effects: ef,
-					sourceRectangle: curr.CurrentFrame.Bounds
-					);
-        }
+			base.SourceRectangle = curr.CurrentFrame.Bounds;
+        
+			base.Draw(sp);
+		}
     }
 }

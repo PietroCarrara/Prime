@@ -11,6 +11,8 @@ namespace Prime.Graphics
 
         public float Rotation;
 
+		public Rectangle SourceRectangle;
+
 		public bool FlipX, FlipY;
 
         public Sprite(Texture2D tex)
@@ -78,7 +80,8 @@ namespace Prime.Graphics
 					origin: Origin, 
 					rotation: Rotation,
 					scale: scale,
-					effects: ef
+					effects: ef,
+					sourceRectangle: SourceRectangle
 					);
         }
     }
