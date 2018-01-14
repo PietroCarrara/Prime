@@ -40,19 +40,30 @@ namespace Prime
         {
             if (s1.CollidesWith(s2))
             {
+				var cr = s1.DoCollision(s2);				
+
+				s1.OnCollision?.Invoke(s2, cr);
+
                 if (!s1.IsCollidingWith.Contains(s2))
                 {
-					s1.OnCollisionEnter?.Invoke(s2.Owner);
+					s1.OnCollisionEnter?.Invoke(s2, cr);
 
                     s1.IsCollidingWith.Add(s2);
                 }
             }
-            else if (s1.IsCollidingWith.Contains(s2))
-            {
-				s1.OnCollisionExit?.Invoke(s2.Owner);	
+			else if (s1.IsCollidingWith.Any())
+			{
+				if (s1.IsCollidingWith.Contains(s2))
+            	{
+					s1.OnCollisionExit?.Invoke(s2);	
 
-                s1.IsCollidingWith.Remove(s2);
-            }
-        }
+                	s1.IsCollidingWith.Remove(s2);
+            	}
+			}
+			else
+			{
+				s1.LastSafePos = s1.Owner.Position;
+			}
+		}	
     }
 }

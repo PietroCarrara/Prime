@@ -78,9 +78,10 @@ namespace Prime
 
 			Time.GameTime = gameTime;
 			Input.Update();
-			Colliders.Update();
 			
 			activeScene.Update();
+
+			Colliders.Update();
 		}
 
         protected override void Draw(GameTime gameTime)
