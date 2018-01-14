@@ -120,7 +120,7 @@ namespace Prime.Graphics
 
         public override void Draw(SpriteBatch sp)
         {
-			base.SourceRectangle = curr.CurrentFrame.Bounds;
+			base.sourceRectangle = curr.CurrentFrame.Bounds;
         
 			base.Draw(sp);
 		}

@@ -7,13 +7,32 @@ namespace Prime.Graphics
     {
         public Texture2D Tex;
 
-        public Vector2 Origin;
+        public Vector2? Origin;
+
+		public Vector2 RelativePosition;
 
         public float Rotation;
 
-		public Rectangle SourceRectangle;
-
 		public bool FlipX, FlipY;
+
+		protected Rectangle? sourceRectangle;
+		public Rectangle? SourceRectangle
+		{
+			get
+			{
+				return this.sourceRectangle;
+			}
+			set
+			{
+				var h = this.Height;
+				var w = this.Width;
+
+				this.sourceRectangle = value;
+
+				this.Height = h;
+				this.Width = w;
+			}
+		}
 
         public Sprite(Texture2D tex)
         {
@@ -38,11 +57,17 @@ namespace Prime.Graphics
         {
             get
             {
+				if(SourceRectangle != null)
+					return SourceRectangle.Value.Width * scale.X;
+
                 return Tex.Width * scale.X;
             }
             set
             {
-                scale.X = value / Tex.Width;
+				if(SourceRectangle != null)
+                	scale.X = value / SourceRectangle.Value.Width;
+				else
+                	scale.X = value / Tex.Width;
             }
         }
 
@@ -50,11 +75,17 @@ namespace Prime.Graphics
         {
             get
             {
+				if(SourceRectangle != null)
+					return this.SourceRectangle.Value.Height * scale.Y;
+
                 return Tex.Height * scale.Y;
             }
             set
             {
-                scale.Y = value / Tex.Height;
+				if(SourceRectangle != null)
+                	scale.Y = value / SourceRectangle.Value.Height;
+				else
+                	scale.Y = value / Tex.Height;
             }
         }
 
@@ -75,9 +106,9 @@ namespace Prime.Graphics
 
             sp.Draw(
 					texture: Tex,
-					position: Owner.Position, 
-					color: Color.White, 
-					origin: Origin, 
+					position: Owner.Position + RelativePosition,
+					color: Color.White,
+					origin: Origin,
 					rotation: Rotation,
 					scale: scale,
 					effects: ef,
