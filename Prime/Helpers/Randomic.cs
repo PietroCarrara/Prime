@@ -6,12 +6,20 @@ namespace Prime
 
 		public static bool Chanche(int chance)
 		{
-			return  r.Next(100) < chance;
+			return r.Next(100) < chance;
 		}
 
-		private static int Rand(int max)
+		public static int Rand(int max)
 		{
 			return r.Next(max);
+		}
+	}
+
+	public static class RandomArrayExtensions
+	{
+		public static T Rand<T>(this T[] self)
+		{
+			return self[Randomic.Rand(self.Length)];
 		}
 	}
 }
