@@ -6,7 +6,7 @@ using MonoGame.Extended.ViewportAdapters;
 
 namespace Prime
 {
-    public abstract class PrimeGame : Game
+    public class PrimeGame : Game
     {
 		// The spritebatch that draws tem all
 		private SpriteBatch drawer;
