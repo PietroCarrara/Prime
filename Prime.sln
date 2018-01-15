@@ -1,9 +1,9 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prime", "Prime\Prime.csproj", "{66F70D0D-94F2-47DE-8746-95E2E9D3C527}"
+Project("{66F70D0D-94F2-47DE-8746-95E2E9D3C527}") = "Prime", "Prime\Prime.csproj", "{66F70D0D-94F2-47DE-8746-95E2E9D3C527}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prime-Samples", "Prime-Samples\Prime-Samples.csproj", "{CDF66AEF-EE90-47EF-84AC-1F4BC5069249}"
+Project("{CDF66AEF-EE90-47EF-84AC-1F4BC5069249}") = "Prime-Samples", "Prime-Samples\Prime-Samples.csproj", "{CDF66AEF-EE90-47EF-84AC-1F4BC5069249}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
