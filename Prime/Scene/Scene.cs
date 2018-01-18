@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,8 +15,6 @@ namespace Prime
 
 		public Color ClearColor = Color.CornflowerBlue;
 
-		private List<Entity> destroyQueue = new List<Entity>();
-		
 		private List<Entity> entities = new List<Entity>();
 		public List<Entity> Entities
 		{
@@ -25,9 +24,14 @@ namespace Prime
 			}
 		}
 
+		public List<T> GetEntities<T>() where T : Entity
+		{
+			return entities.OfType<T>().ToList();
+		}
+
 		// Add a entity here and it will be scheduled
 		// for deletion
-		private List<Entity> deletion = new List<Entity>();
+		private List<Entity> destroyQueue = new List<Entity>();
 
 		public Camera Cam = new Camera();
 
