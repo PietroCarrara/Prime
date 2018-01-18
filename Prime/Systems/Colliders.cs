@@ -25,33 +25,38 @@ namespace Prime
             {
                 foreach (var s in colliders.Skip(i))
                 {
-                    if (shape != s)
+					if(shape.CollidesWith(s))
 					{
-                        doCollision(shape, s);
+       	         		doCollision(shape, s);
 						doCollision(s, shape);
-                	}
+					}
+					else
+					{
+						checkOther(shape, s);
+						checkOther(s, shape);
+					}
 				}
-
                 i++;
             }
         }
 
         private static void doCollision(Shape s1, Shape s2)
         {
-            if (s1.CollidesWith(s2))
+			var cr = s1.DoCollision(s2);				
+
+			s1.OnCollision?.Invoke(s2, cr);
+
+            if (!s1.IsCollidingWith.Contains(s2))
             {
-				var cr = s1.DoCollision(s2);				
+				s1.OnCollisionEnter?.Invoke(s2, cr);
 
-				s1.OnCollision?.Invoke(s2, cr);
-
-                if (!s1.IsCollidingWith.Contains(s2))
-                {
-					s1.OnCollisionEnter?.Invoke(s2, cr);
-
-                    s1.IsCollidingWith.Add(s2);
-                }
+            	s1.IsCollidingWith.Add(s2);
             }
-			else if (s1.IsCollidingWith.Any())
+		}	
+
+		private static void checkOther(Shape s1, Shape s2)
+		{
+			if (s1.IsCollidingWith.Any())
 			{
 				if (s1.IsCollidingWith.Contains(s2))
             	{
@@ -64,6 +69,6 @@ namespace Prime
 			{
 				s1.LastSafePos = s1.Owner.Position;
 			}
-		}	
+		}
     }
 }
