@@ -33,6 +33,10 @@ namespace Prime
 		// for deletion
 		private List<Entity> destroyQueue = new List<Entity>();
 
+		// Add a entity here and it will be scheduled
+		// for addition
+		private List<Entity> addQueue = new List<Entity>();
+
 		public Camera Cam = new Camera();
 
 		public Scene()
@@ -40,7 +44,7 @@ namespace Prime
 
 		public T Add<T>(T e) where T : Entity
 		{
-			entities.Add(e);
+			addQueue.Add(e);
 		
 			e.Scene = this;
 
@@ -71,6 +75,13 @@ namespace Prime
 
 		public virtual void Update()
 		{
+			foreach(var e in addQueue)
+			{
+				entities.Add(e);
+			}
+
+			addQueue.Clear();
+
 			foreach (var e in entities)
 			{
 				e.Update();
