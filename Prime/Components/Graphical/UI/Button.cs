@@ -27,8 +27,7 @@ namespace Prime
 
 			this.Text = new TextComponent(text, font);
 			Text.Alignment = Alignment.Center;
-			Text.Origin.Y = -height;
-
+			Text.Origin.Y = font.MeasureString(text).Y / -2f;
 			this.OnClick = onClick;
 		}
 
