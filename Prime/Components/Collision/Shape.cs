@@ -8,8 +8,6 @@ namespace Prime
 	{
 		public abstract bool CollidesWith(Shape s);
 
-		public abstract CollisionResult DoCollision(Shape s);
-
 		public abstract Vector2 Position{get;}
 
 		public Action<Shape, CollisionResult> OnCollisionEnter;

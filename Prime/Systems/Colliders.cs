@@ -42,13 +42,11 @@ namespace Prime
 
         private static void doCollision(Shape s1, Shape s2)
         {
-			var cr = s1.DoCollision(s2);				
-
-			s1.OnCollision?.Invoke(s2, cr);
+			s1.OnCollision?.Invoke(s2, null);
 
             if (!s1.IsCollidingWith.Contains(s2))
             {
-				s1.OnCollisionEnter?.Invoke(s2, cr);
+				s1.OnCollisionEnter?.Invoke(s2, null);
 
             	s1.IsCollidingWith.Add(s2);
             }

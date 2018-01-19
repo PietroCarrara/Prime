@@ -39,10 +39,5 @@ namespace Prime
 
 			return dist <= this.Radius + c.Radius;
 		}
-		
-		public override CollisionResult DoCollision(Shape s)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }
