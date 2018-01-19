@@ -7,6 +7,8 @@ namespace Prime.Graphics
     {
         public Texture2D Tex;
 
+		public bool IsVisible = true;
+
         public Vector2? Origin;
 
 		public Vector2 RelativePosition;
@@ -91,6 +93,9 @@ namespace Prime.Graphics
 
         public override void Draw(SpriteBatch sp)
         {
+			if(!IsVisible)
+				return;
+
 			var ef = SpriteEffects.None;
 
 			if(FlipX)
