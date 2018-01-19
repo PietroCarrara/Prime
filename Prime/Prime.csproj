@@ -49,6 +49,8 @@
     <Compile Include="Components\Graphical\Camera\FollowTarget.cs" />
     <Compile Include="Components\Graphical\Camera\DelayedFollowTarget.cs" />
     <Compile Include="Components\Graphical\Text\TextComponent.cs" />
+    <Compile Include="Components\Graphical\UI\Button.cs" />
+    <Compile Include="Components\Graphical\UI\UIEntity.cs" />
     <Compile Include="Components\Collision\CollisionResult.cs" />
   </ItemGroup>
   <ItemGroup>
