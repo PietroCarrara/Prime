@@ -16,6 +16,36 @@ namespace Prime
 			}
 		}
 
+		private float drawOrder;
+		public float DrawOrder
+		{
+			get
+			{
+				return drawOrder;
+			}
+			set
+			{
+				drawOrder = value;
+				if(this.Scene != null)
+					Scene.SortDraw(this);
+			}
+		}
+
+		private float updateOrder;
+		public float UpdateOrder
+		{
+			get
+			{
+				return updateOrder;
+			}
+			set
+			{
+				updateOrder = value;
+				if(this.Scene != null)
+					Scene.SortUpdate(this);
+			}
+		}
+
 		private List<Component> destroyQueue = new List<Component>();
 
 		public Scene Scene;

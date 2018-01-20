@@ -15,6 +15,9 @@ namespace Prime
 
 		public Color ClearColor = Color.CornflowerBlue;
 
+		private List<Entity> byUpdateOrder = new List<Entity>();
+		private List<Entity> byDrawOrder = new List<Entity>();
+
 		private List<Entity> entities = new List<Entity>();
 		public List<Entity> Entities
 		{
@@ -67,7 +70,7 @@ namespace Prime
 
 		public void Draw(SpriteBatch sp)
 		{
-			foreach(var e in entities)
+			foreach(var e in byDrawOrder)
 			{
 				e.Draw(sp);
 			}
@@ -78,11 +81,13 @@ namespace Prime
 			foreach(var e in addQueue)
 			{
 				entities.Add(e);
+				SortUpdate(e);
+				SortDraw(e);
 			}
 
 			addQueue.Clear();
 
-			foreach (var e in entities)
+			foreach (var e in byUpdateOrder)
 			{
 				e.Update();
 			}
@@ -96,6 +101,36 @@ namespace Prime
 			}
 
 			destroyQueue.Clear();
+		}
+
+		internal void SortDraw(Entity e)
+		{
+			byDrawOrder.Remove(e);
+
+			int index = 0;
+			foreach(var entity in byDrawOrder)
+			{
+				if(entity.DrawOrder > e.DrawOrder)
+					break;
+				else
+					index++;
+			}
+			byDrawOrder.Insert(index, e);
+		}
+
+		internal void SortUpdate(Entity e)
+		{
+			byUpdateOrder.Remove(e);
+
+			int index = 0;
+			foreach(var entity in byUpdateOrder)
+			{
+				if(entity.UpdateOrder > e.UpdateOrder)
+					break;
+				else
+					index++;
+			}
+			byUpdateOrder.Insert(index, e);
 		}
 	}
 }
