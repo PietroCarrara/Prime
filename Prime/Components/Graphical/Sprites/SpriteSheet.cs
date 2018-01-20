@@ -60,12 +60,11 @@ namespace Prime.Graphics
 			}
 		}
 
-		public void Add(string name, int start, int end, float frameDuration, bool isLooping = true)
+		public void Add(string name, int start, int end, float frameDuration)
 		{
 			var a = new Animation
 			{
 				Name = name,
-				IsLooping = isLooping,
 				Start = start,
 				End = end,
 				FrameDuration = frameDuration
@@ -76,29 +75,24 @@ namespace Prime.Graphics
 
         public void Play(string name, System.Action post = null)
         {
-			if(current.Name == name)
+			var anim = animations[name];
+
+			Play(anim, post);
+        }
+
+		private void Play(Animation a, System.Action post = null)
+		{
+			if(current != null && current.Name == a.Name)
 				return;
 
 			elapsedTime = 0;
-
-			var anim = animations[name];
 			
-			if(anim.IsLooping)
-			{
-				anim.OnComplete = post;
-			}
-			else
-			{
-				anim.OnComplete = () =>
-				{
-					post?.Invoke();
-					Play(name, post);
-				};
-			}
+			if(post != null)
+				a.OnComplete = post;
 
-			current = anim;
+			current = a;
 			currentFrame = current.Start;
-        }
+		}
 
         public override void Update()
         {
@@ -116,6 +110,7 @@ namespace Prime.Graphics
 			{
 				currentFrame -= current.End - current.Start;
 				current.OnComplete?.Invoke();
+				current.OnComplete = null;
 			}
         }
 
@@ -133,13 +128,13 @@ namespace Prime.Graphics
 		}
     }
 
-	struct Animation
+	class Animation
 	{
 		public string Name;
-		public bool IsLooping;
 		public int Start;
 		public int End;
 		public float FrameDuration;
 		public Action OnComplete;
+		public Animation Previous;
 	}
 }
