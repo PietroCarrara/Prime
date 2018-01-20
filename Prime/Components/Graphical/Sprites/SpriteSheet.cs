@@ -135,6 +135,5 @@ namespace Prime.Graphics
 		public int End;
 		public float FrameDuration;
 		public Action OnComplete;
-		public Animation Previous;
 	}
 }
