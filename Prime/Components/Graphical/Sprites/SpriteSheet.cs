@@ -1,41 +1,50 @@
+using Prime;
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
-using MonoGame.Extended.Graphics;
-using MonoGame.Extended.Animations;
-using MonoGame.Extended.Animations.SpriteSheets;
-using MonoGame.Extended.TextureAtlases;
 using System.Collections.Generic;
 
 namespace Prime.Graphics
 {
     public class SpriteSheet : Sprite
     {
-        private SpriteSheetAnimation curr;
+		private Point frameDimensions;
+		private Point texDimensions;
 
-        private SpriteSheetAnimationFactory factory;
+		private Animation current;
 
-        private int frames;
+		private int currentFrame;
 
-        public SpriteSheet(Texture2D tex, TextureAtlas atlas)
-            : base(tex)
+		private float elapsedTime;
+
+		// Indicates how many frames there are
+		// per 'row' and 'column' of the sprite
+		private Point frameCount;
+
+		private Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
+
+        public SpriteSheet(Texture2D tex, Point texDimensions, Point frameDimensions)
         {
-            factory = new SpriteSheetAnimationFactory(atlas);
-			
-            frames = atlas.RegionCount;
+			this.Tex = tex;
 
-			Origin = new Vector2(factory.Frames[0].Width / 2f, factory.Frames[0].Height / 2f);
+			this.texDimensions = texDimensions;
+			this.frameDimensions = frameDimensions;
+
+			this.Origin = frameDimensions.ToVector2() / 2;
+
+			frameCount.X = texDimensions.X / frameDimensions.X;
+			frameCount.Y = texDimensions.Y / frameDimensions.Y;
         }
 
 		public override float Width
 		{
 			get
 			{
-				return curr.CurrentFrame.Width * this.scale.X;
+				return frameDimensions.X * this.scale.X;
 			}
 			set
 			{
-				scale.X = value / curr.CurrentFrame.Width;
+				scale.X = value / frameDimensions.X;
 			}
 		}
 
@@ -43,86 +52,94 @@ namespace Prime.Graphics
 		{
 			get
 			{
-				return curr.CurrentFrame.Height * this.scale.Y;
+				return frameDimensions.Y * this.scale.Y;
 			}
 			set
 			{
-				scale.Y = value / curr.CurrentFrame.Height;
+				scale.Y = value / frameDimensions.Y;
 			}
 		}
 
-        public void Add(string name, int start, int end, float frameDuration = 0.2f, bool loop = true, bool reversed = false, bool pingPong = false)
-        {
-			var frames = new int[end - start];
+		public void Add(string name, int start, int end, float frameDuration, bool isLooping = true)
+		{
+			var a = new Animation
+			{
+				Name = name,
+				IsLooping = isLooping,
+				Start = start,
+				End = end,
+				FrameDuration = frameDuration
+			};
 
-            for (int i = 0; i < end - start; i++)
-            {
-                frames[i] = start + i;
-            }
-
-            factory.Add(name, new SpriteSheetAnimationData(frames, frameDuration, loop, reversed, pingPong));
-        }
-
-        public void Add(string name, int[] frames = null, float frameDuration = 0.2f, bool loop = true, bool reversed = false, bool pingPong = false)
-        {
-            if (frames == null)
-            {
-                frames = new int[this.frames];
-
-                for (int i = 0; i < this.frames; i++)
-                {
-                    frames[i] = i;
-                }
-            }
-
-            factory.Add(name, new SpriteSheetAnimationData(frames, frameDuration, loop, reversed, pingPong));
+			animations.Add(name, a);
 		}
 
-        public void Play(string name, System.Action post = default(System.Action))
+        public void Play(string name, System.Action post = null)
         {
-			// Don't rewind the animation if it's already playing
-			if(curr != null && name == curr.Name)
+			if(current.Name == name)
 				return;
 
-            var anim = factory.Create(name);
+			elapsedTime = 0;
 
-			if (!anim.IsLooping && curr != null)
-			{		
-				var currName = curr.Name;
-				var currPost = curr.OnCompleted;
-
-				anim.OnCompleted = () =>
-				{
-					post?.Invoke();
-					this.Play(currName, currPost);
-				};
-			} 
+			var anim = animations[name];
+			
+			if(anim.IsLooping)
+			{
+				anim.OnComplete = post;
+			}
 			else
 			{
-				anim.OnCompleted = post;	
+				anim.OnComplete = () =>
+				{
+					post?.Invoke();
+					Play(name, post);
+				};
 			}
 
-			curr = anim;
-			curr.Play();
+			current = anim;
+			currentFrame = current.Start;
         }
 
         public override void Update()
         {
             base.Update();
 
-			var scale = new Vector2(Width, Height);
-				
-			curr.Update(Time.DetlaTime);
+			elapsedTime += Time.DetlaTime;
+			
+			while(elapsedTime > current.FrameDuration)
+			{
+				elapsedTime -= current.FrameDuration;
+				currentFrame++;
+			}
 
-			this.Width = scale.X;
-			this.Height = scale.Y;
+			while(currentFrame >= current.End)
+			{
+				currentFrame -= current.End - current.Start;
+				current.OnComplete?.Invoke();
+			}
         }
 
         public override void Draw(SpriteBatch sp)
         {
-			base.sourceRectangle = curr.CurrentFrame.Bounds;
+			int y = currentFrame / frameCount.X;
+			int x = currentFrame - y * frameCount.X;
+
+			x *= frameDimensions.X;
+			y *= frameDimensions.Y;
+
+			base.sourceRectangle = new Rectangle(new Point(x, y), frameDimensions);
         
 			base.Draw(sp);
 		}
     }
+
+	struct Animation
+	{
+		public string Name;
+		public bool IsLooping;
+		public int Start;
+		public int End;
+		public float FrameDuration;
+		public Action OnComplete;
+	}
 }
