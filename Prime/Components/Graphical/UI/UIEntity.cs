@@ -5,25 +5,13 @@ namespace Prime
 {
 	public class UIEntity : Entity
 	{
-		private Vector2 position;
-		public new Vector2 Position
-		{
-			get
-			{
-				return position;
-			}
-			set
-			{
-				base.Position = value + this.Scene.Cam.Position;
-				this.position = value;
-			}
-		}
+		public new Vector2 Position {get; set;}
 
 		public override void Update()
 		{
 			base.Update();
 
-			base.Position = this.Scene.Cam.Position + position;
+			base.Position = this.Scene.Cam.Position + Position - new Vector2(1280, 720) / 2f;
 		}
 	}
 }
