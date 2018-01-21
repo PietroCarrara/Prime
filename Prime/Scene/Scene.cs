@@ -87,12 +87,12 @@ namespace Prime
 
 			addQueue.Clear();
 
+			Cam.Update();
+
 			foreach (var e in byUpdateOrder)
 			{
 				e.Update();
 			}
-
-			Cam.Update();
 
 			foreach(var e in destroyQueue)
 			{
