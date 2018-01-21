@@ -17,7 +17,7 @@ namespace Prime
 		}
 
 		private float drawOrder;
-		public float DrawOrder
+		public virtual float DrawOrder
 		{
 			get
 			{
@@ -32,7 +32,7 @@ namespace Prime
 		}
 
 		private float updateOrder;
-		public float UpdateOrder
+		public virtual float UpdateOrder
 		{
 			get
 			{

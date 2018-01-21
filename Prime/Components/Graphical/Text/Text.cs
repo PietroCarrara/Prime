@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Prime
 {
-	public class Text : Entity
+	public class Text : UIEntity
 	{
 		public TextComponent TextComponent;
 
