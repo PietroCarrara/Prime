@@ -51,5 +51,13 @@ namespace Prime
 
 			return e;
 		}
+
+		public override void OnDestroy()
+		{
+			foreach(var e in children)
+			{
+				e.Destroy();
+			}
+		}
 	}
 }
