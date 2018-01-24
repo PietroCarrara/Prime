@@ -94,10 +94,13 @@ namespace Prime
 				e.Update();
 			}
 
-			foreach(var e in destroyQueue)
+			while(destroyQueue.Any())
 			{
+				var e = destroyQueue[0];
+
 				e.OnDestroy();
 				entities.Remove(e);
+				destroyQueue.Remove(e);
 			}
 
 			destroyQueue.Clear();
