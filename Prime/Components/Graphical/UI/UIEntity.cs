@@ -1,5 +1,6 @@
 using Prime;
 using Microsoft.Xna.Framework;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Prime
@@ -54,9 +55,12 @@ namespace Prime
 
 		public override void OnDestroy()
 		{
-			foreach(var e in children)
+			base.OnDestroy();
+
+			while(children.Any())
 			{
-				e.Destroy();
+				children[0].Destroy();
+				children.RemoveAt(0);
 			}
 		}
 	}

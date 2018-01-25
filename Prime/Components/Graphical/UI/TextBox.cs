@@ -18,7 +18,7 @@ namespace Prime
 		// is the scrolling skipping
 		private int scrollValue;
 
-		// Where the carretIs
+		// Where the carret is
 		private int carretIndex = 1;
 
 		private string text;
@@ -30,8 +30,9 @@ namespace Prime
 			}
 			set
 			{
-				text = value;
-				displayText = value.Split('\n').ToList();
+				text = escape(value);
+				
+				displayText = text.Split('\n').ToList();
 
 				// TODO: Manipulate text so it doesn't escape boungins
 				
@@ -66,6 +67,7 @@ namespace Prime
 			this.Add(Background);
 
 			this.Add(TextComponent);
+			this.TextComponent.Origin = new Vector2(this.Width, this.Height) / -2;
 
 			this.Scene.Game.Window.TextInput += (obj, e) =>
 			{
@@ -90,12 +92,31 @@ namespace Prime
 			carretIndex = this.Text.Length;
 		}
 
+		private string escape(string s)
+		{
+			// Tabs
+			s = s.Replace("\t", "    ");
+
+			return s;
+		}
+
 		private void receiveChar(char c)
 		{
 			if(Font.Characters.Contains(c))
 			{
 				this.Text += c;
 				carretIndex++;
+			}
+			else
+			{
+				// Special characters
+				switch(c)
+				{
+					case '\t':
+						this.Text = escape(this.Text + c);
+						carretIndex += 4;
+						break;
+				}
 			}
 		}
 
