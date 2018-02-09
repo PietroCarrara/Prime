@@ -99,11 +99,13 @@ namespace Prime
 				var e = destroyQueue[0];
 
 				e.OnDestroy();
+				
 				entities.Remove(e);
-				destroyQueue.Remove(e);
-			}
+				byUpdateOrder.Remove(e);
+				byDrawOrder.Remove(e);
 
-			destroyQueue.Clear();
+				destroyQueue.RemoveAt(0);
+			}
 		}
 
 		internal void SortDraw(Entity e)
