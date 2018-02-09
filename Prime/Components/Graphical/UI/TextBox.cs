@@ -34,7 +34,7 @@ namespace Prime
 				
 				displayText = text.Split('\n').ToList();
 
-				// TODO: Manipulate text so it doesn't escape boungins
+				fit();
 				
 				TextComponent.Content = displayText.Aggregate((a, b) => a + '\n' + b);
 			}
@@ -100,12 +100,38 @@ namespace Prime
 			return s;
 		}
 
+		private void fit()
+		{
+			var result = new List<string>();
+
+			foreach (var l in displayText.Skip(scrollValue))
+			{
+				var line = l;
+				var newLine = "";
+
+				while (Font.MeasureString(line).X > this.Width)
+				{
+					newLine = line[line.Length - 1] + newLine;
+
+					line = line.Remove(line.Length - 1);
+				}
+
+				result.Add(line);
+				if (newLine != "")
+				{
+					result.Add(newLine);
+				}
+			}
+
+			displayText = result;
+		}
+
 		private void receiveChar(char c)
 		{
 			if(Font.Characters.Contains(c))
 			{
-				this.Text = this.Text.Insert(carretIndex, c.ToString());
 				carretIndex++;
+				this.Text = this.Text.Insert(carretIndex, c.ToString());
 			}
 			else
 			{
@@ -113,8 +139,8 @@ namespace Prime
 				switch(c)
 				{
 					case '\t':
-						this.Text = escape(this.Text.Insert(carretIndex, c.ToString()));
 						carretIndex += 4;
+						this.Text = this.Text.Insert(carretIndex, c.ToString());
 						break;
 				}
 			}
@@ -131,8 +157,8 @@ namespace Prime
 				case Keys.Back:
 					if(this.Text.Length > 0 && carretIndex > 0)
 					{
-						this.Text = this.Text.Remove(carretIndex - 1, 1);
 						carretIndex--;
+						this.Text = this.Text.Remove(carretIndex - 1, 1);
 					}
 					break;
 			}
