@@ -19,9 +19,9 @@ namespace Prime
 		private int scrollValue;
 
 		// Where the carret is
-		private int carretIndex = 1;
+		private int carretIndex = 0;
 
-		private string text;
+		private string text = "";
 		public string Text
 		{
 			get
@@ -104,7 +104,7 @@ namespace Prime
 		{
 			if(Font.Characters.Contains(c))
 			{
-				this.Text += c;
+				this.Text = this.Text.Insert(carretIndex, c.ToString());
 				carretIndex++;
 			}
 			else
@@ -113,7 +113,7 @@ namespace Prime
 				switch(c)
 				{
 					case '\t':
-						this.Text = escape(this.Text + c);
+						this.Text = escape(this.Text.Insert(carretIndex, c.ToString()));
 						carretIndex += 4;
 						break;
 				}
