@@ -14,6 +14,9 @@ namespace Prime
 		// Each position indicates a line
 		private List<string> displayText;
 
+		// Special characters that can be handled
+		private List<char> special = new List<char>{ '\t' };
+
 		// This says how many lines 
 		// is the scrolling skipping
 		private int scrollValue;
@@ -80,16 +83,23 @@ namespace Prime
 		{
 			base.Update();
 
-			if(Input.IsKeyPressed(Keys.Left) && carretIndex > 0)
+			if(Input.IsKeyDown(Keys.Left) && carretIndex > 0)
+			{
 				carretIndex--;
-			
+				this.Text = this.Text;
+			}
+
 			if(Input.IsKeyPressed(Keys.Right) && carretIndex < this.Text.Length)
+			{
 				carretIndex++;
+				this.Text = this.Text;
+			}
 		}
 
 		public void ResetCarret()
 		{
 			carretIndex = this.Text.Length;
+			this.Text = this.Text;
 		}
 
 		private string escape(string s)
@@ -104,7 +114,7 @@ namespace Prime
 		{
 			var result = new List<string>();
 
-			foreach (var l in displayText.Skip(scrollValue))
+			foreach (var l in displayText)
 			{
 				var line = l;
 				var newLine = "";
@@ -124,41 +134,90 @@ namespace Prime
 			}
 
 			displayText = result;
+
+			int carretLine = 0;
+
+			// I don't think that fonts have variable height, so this is ok
+			float pixelHeight = Font.MeasureString("ABC").Y;
+			int totalLines = (int)(this.Height / pixelHeight);
+
+			if (result.Any())
+			{
+				int totalChars = result[0].Length;
+
+				foreach(var l in result.Skip(1))
+				{
+					if (totalChars >= carretIndex)
+						break;
+
+					carretLine++;
+					totalChars += l.Length + 1;
+				}
+
+				int topLine = scrollValue;
+				int bottomLine = topLine + totalLines;
+
+				if (topLine < 0)
+					topLine = 0;
+				if (bottomLine > displayText.Count())
+					bottomLine = displayText.Count();
+
+
+				// Scroll
+				if (carretLine < topLine)
+				{
+					bottomLine = carretLine + totalLines;
+					topLine = carretLine;
+				}
+				else if (carretLine > bottomLine)
+				{
+					topLine += carretLine - bottomLine;
+					bottomLine = carretLine;
+				}
+
+				// If we are not using all the possible lines
+				if (bottomLine - topLine != totalLines - 1 && carretLine >= totalLines)
+				{
+					bottomLine = carretLine;
+					topLine = bottomLine - totalLines;
+				}
+
+				scrollValue = topLine;
+
+				int len = result.Count();
+				if (bottomLine + 1 < len)
+					result.RemoveRange(bottomLine + 1, len - (bottomLine + 1));
+			}
+
+			displayText = result.Skip(scrollValue).ToList();
 		}
 
 		private void receiveChar(char c)
 		{
-			if(Font.Characters.Contains(c))
+			if (Font.Characters.Contains(c) || special.Contains(c))
 			{
-				carretIndex++;
-				this.Text = this.Text.Insert(carretIndex, c.ToString());
-			}
-			else
-			{
-				// Special characters
-				switch(c)
-				{
-					case '\t':
-						carretIndex += 4;
-						this.Text = this.Text.Insert(carretIndex, c.ToString());
-						break;
-				}
+				var txt = this.Text.Insert(carretIndex, c.ToString());
+				carretIndex += txt.Length - this.Text.Length;
+				this.Text = txt;
 			}
 		}
 
 		private void receiveKey(Keys k)
 		{
+			var txt = "";
 			switch(k)
 			{
 				case Keys.Enter:
-					this.Text += '\n';
+					txt = this.Text.Insert(carretIndex, "\n");
 					carretIndex++;
+					this.Text = txt;
 					break;
 				case Keys.Back:
 					if(this.Text.Length > 0 && carretIndex > 0)
 					{
+						txt = this.Text.Remove(carretIndex - 1, 1);
 						carretIndex--;
-						this.Text = this.Text.Remove(carretIndex - 1, 1);
+						this.Text = txt;
 					}
 					break;
 			}
