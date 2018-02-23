@@ -143,7 +143,7 @@ namespace Prime
 
 			if (result.Any())
 			{
-				int totalChars = result[0].Length;
+				int totalChars = result[0].Length - 1;
 
 				foreach(var l in result.Skip(1))
 				{
@@ -169,17 +169,17 @@ namespace Prime
 					bottomLine = carretLine + totalLines;
 					topLine = carretLine;
 				}
-				else if (carretLine > bottomLine)
+				else if (carretLine >= bottomLine)
 				{
-					topLine += carretLine - bottomLine;
-					bottomLine = carretLine;
+					topLine += carretLine - bottomLine + 1;
+					bottomLine = carretLine + 1;
 				}
 
 				// If we are not using all the possible lines
-				if (bottomLine - topLine != totalLines - 1 && carretLine >= totalLines)
+				if (bottomLine - topLine != totalLines && carretLine >= totalLines)
 				{
 					bottomLine = carretLine;
-					topLine = bottomLine - totalLines;
+					topLine = bottomLine - totalLines + 1;
 				}
 
 				scrollValue = topLine;
