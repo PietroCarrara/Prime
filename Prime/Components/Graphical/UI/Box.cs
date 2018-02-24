@@ -9,21 +9,10 @@ namespace Prime
 	{
 		public float Width, Height;
 
-		public Sprite Background;
-		
-		public Box(float w, float h, Sprite bg)
+		public Box(float w, float h)
 		{
 			this.Width = w;
 			this.Height = h;
-			
-			this.Background = bg;
-		}
-
-		public override void Initialize()
-		{
-			base.Initialize();
-
-			this.Add(Background);
 		}
 	}
 }

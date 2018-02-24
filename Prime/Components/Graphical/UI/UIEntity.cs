@@ -12,6 +12,14 @@ namespace Prime
 		private List<UIEntity> children = new List<UIEntity>();
 
 		private UIEntity parent;
+
+		protected Vector2 AbsolutePosition
+		{
+			get
+			{
+				return base.Position;
+			}
+		}
 			
 		public override float DrawOrder
 		{
