@@ -8,8 +8,7 @@ namespace Prime.Graphics
 {
     public class SpriteSheet : Sprite
     {
-		private Point frameDimensions;
-		private Point texDimensions;
+		private Point frameDimensions, texDimensions;
 
 		private Animation current;
 
@@ -125,6 +124,29 @@ namespace Prime.Graphics
 			base.sourceRectangle = new Rectangle(new Point(x, y), frameDimensions);
         
 			base.Draw(sp);
+		}
+
+		public override Sprite Clone()
+		{
+			var res = new SpriteSheet(this.Tex, this.texDimensions, this.frameDimensions);
+
+			res.current = this.current;
+			res.FlipX = this.FlipX;
+			res.FlipY = this.FlipY;
+			res.Height = this.Height;
+			res.Width = this.Width;
+			res.IsVisible = this.IsVisible;
+			res.Origin = this.Origin;
+			res.RelativePosition = this.RelativePosition;
+			res.SourceRectangle = this.SourceRectangle;
+			res.Rotation = this.Rotation;
+
+			foreach (var anim in this.animations)
+			{
+				res.animations.Add(anim.Key, anim.Value);
+			}
+
+			return res;
 		}
     }
 

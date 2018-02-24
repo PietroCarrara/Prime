@@ -120,5 +120,21 @@ namespace Prime.Graphics
 					sourceRectangle: SourceRectangle
 					);
         }
+
+		public virtual Sprite Clone()
+		{
+			var res = new Sprite(this.Tex);
+
+			res.IsVisible = this.IsVisible;
+			res.FlipX = this.FlipX;
+			res.FlipY = this.FlipY;
+			res.Height = this.Height;
+			res.Width = this.Width;
+			res.Origin = this.Origin;
+			res.RelativePosition = this.RelativePosition;
+			res.Rotation = this.Rotation;
+
+			return res;
+		}
     }
 }
