@@ -40,6 +40,15 @@ namespace Prime
 			}
 		}
 
+		// Utility for getting the center of the screen
+		public static Vector2 Center
+		{
+			get
+			{
+				return new Vector2(1280, 720) / 2;
+			}
+		}
+
         public PrimeGame(Scene s)
         {
             graphics = new GraphicsDeviceManager(this);
