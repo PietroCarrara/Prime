@@ -196,7 +196,7 @@ namespace Prime
 		{
 			if (Font.Characters.Contains(c) || special.Contains(c))
 			{
-				var txt = this.Text.Insert(carretIndex, c.ToString());
+				var txt = escape(this.Text.Insert(carretIndex, c.ToString()));
 				carretIndex += txt.Length - this.Text.Length;
 				this.Text = txt;
 			}
