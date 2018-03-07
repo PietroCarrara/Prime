@@ -39,7 +39,7 @@ namespace Prime
 
 				fit();
 				
-				TextComponent.Content = displayText.Aggregate((a, b) => a + '\n' + b);
+				TextComponent.Content = displayText.Aggregate((a, b) => a + '\n' + b).Insert(carretIndex, "|");
 			}
 		}
 
@@ -83,7 +83,7 @@ namespace Prime
 		{
 			base.Update();
 
-			if(Input.IsKeyDown(Keys.Left) && carretIndex > 0)
+			if(Input.IsKeyPressed(Keys.Left) && carretIndex > 0)
 			{
 				carretIndex--;
 				this.Text = this.Text;
@@ -161,7 +161,6 @@ namespace Prime
 					topLine = 0;
 				if (bottomLine > displayText.Count())
 					bottomLine = displayText.Count();
-
 
 				// Scroll
 				if (carretLine < topLine)
