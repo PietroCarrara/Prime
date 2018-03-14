@@ -33,9 +33,9 @@ namespace Prime
 			}
 			set
 			{
-				text = escape(value);
+				text = value;
 				
-				displayText = text.Split('\n').ToList();
+				displayText = escape(text).Split('\n').ToList();
 
 				fit();
 				
@@ -93,6 +93,83 @@ namespace Prime
 			{
 				carretIndex++;
 				this.Text = this.Text;
+			}
+
+			if(Input.IsKeyPressed(Keys.Up))
+			{
+				int totalChars = displayText[0].Length;
+				int carretLine = 0;
+				
+				int inLineIndex;
+
+				foreach(var l in displayText.Skip(1))
+				{
+					if (totalChars >= carretIndex)
+						break;
+
+					carretLine++;
+					totalChars += l.Length + 1;
+				}
+
+				if (carretLine > 0)
+				{
+					int finalPos = totalChars - displayText[carretLine].Length - 1 - displayText[carretLine - 1].Length;
+
+					// How far ahead is the carret
+					int ahead = carretIndex - (finalPos + displayText[carretLine - 1].Length + 1);
+
+					if (ahead < displayText[carretLine - 1].Length)
+					{
+						finalPos += ahead;
+					}
+					else
+					{
+						finalPos += displayText[carretLine -1].Length;
+					}
+
+					carretIndex = finalPos;
+
+					this.Text = this.Text;
+				}
+			}
+
+			if(Input.IsKeyPressed(Keys.Down) && carretIndex < this.Text.Length)
+			{
+				int totalChars = displayText[0].Length;
+				int carretLine = 0;
+				
+				int inLineIndex;
+
+				foreach(var l in displayText.Skip(1))
+				{
+					if (totalChars >= carretIndex)
+						break;
+
+					carretLine++;
+					totalChars += l.Length + 1;
+				}
+
+				if (carretLine < displayText.Count - 1)
+				{
+					int finalPos = totalChars + 1;
+
+					// How far ahead is the carret
+					int ahead = carretIndex - (totalChars - displayText[carretLine].Length);
+
+					if (ahead < displayText[carretLine + 1].Length)
+					{
+						finalPos += ahead;
+					}
+					else
+					{
+						finalPos += displayText[carretLine + 1].Length;
+					}
+					/**/
+
+					carretIndex = finalPos;
+
+					this.Text = this.Text;
+				}
 			}
 		}
 
