@@ -52,6 +52,8 @@ namespace Prime
         public PrimeGame(Scene s)
         {
             graphics = new GraphicsDeviceManager(this);
+			this.Window.AllowUserResizing = true;
+
             Content.RootDirectory = "Content";
 
 			activeScene = s;
@@ -90,6 +92,7 @@ namespace Prime
 			
 			activeScene.Update();
 
+			Tasks.Update();
 			Colliders.Update();
 		}
 
