@@ -164,7 +164,6 @@ namespace Prime
 					{
 						finalPos += displayText[carretLine + 1].Length;
 					}
-					/**/
 
 					carretIndex = finalPos;
 
@@ -175,7 +174,6 @@ namespace Prime
 
 		public void ResetCarret()
 		{
-			carretIndex = this.Text.Length;
 			this.Text = this.Text;
 		}
 
@@ -272,7 +270,7 @@ namespace Prime
 		{
 			if (Font.Characters.Contains(c) || special.Contains(c))
 			{
-				var txt = escape(this.Text.Insert(carretIndex, c.ToString()));
+				var txt = this.Text.Insert(carretIndex, c.ToString());
 				carretIndex += txt.Length - this.Text.Length;
 				this.Text = txt;
 			}

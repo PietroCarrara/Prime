@@ -89,10 +89,10 @@ namespace Prime
 
 			Time.GameTime = gameTime;
 			Input.Update();
+			Tasks.Update();
 			
 			activeScene.Update();
 
-			Tasks.Update();
 			Colliders.Update();
 		}
 
