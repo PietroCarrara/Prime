@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Prime;
 using Prime.Graphics;
 
 namespace Prime
@@ -10,7 +11,7 @@ namespace Prime
 	{
 		public T Selected;
 
-		public float Width, Height, CellWidth, CellHeight;
+		public float CellWidth, CellHeight;
 
 		private int cellsPerPage, cellsPerLine, linesPerPage, currentPage, elementCount;
 
@@ -44,7 +45,7 @@ namespace Prime
 		{
 			base.Initialize();
 
-			hitBox = new RectangleCollider(this.Width, Height - paddingY * 2);
+			hitBox = new RectangleCollider(this.Width, Height);
 
 			selectedHightlight = new RectangleSprite((int)CellWidth, (int)CellHeight);
 			selectedHightlight.IsVisible = false;
@@ -61,25 +62,29 @@ namespace Prime
 			{
 				var pos = Input.MousePosition(this.Scene.Cam) - this.AbsolutePosition + new Vector2(Width, Height) / 2;
 
+				// TODO: Maybe cache this
 				float x = paddingX, y = paddingY + CellHeight;
-				int i, page = 0, line = 0;
+
+				int i, line = 0;
 				for (i = 0; i < cellsPerPage; i++)
 				{
+					// Move one cell to the right
 					x += CellWidth;
 
+					// if we blew the width, break a line
 					if (x - paddingX > cellsPerLine * CellWidth)
 					{
+						// if we have visited all lines, the user didn't click any
 						if (line >= linesPerPage)
 						{
-							line = 0;
-							page++;
-							x = paddingX;
-							y = paddingY + CellHeight;
+							return;
 						}
 						else
 						{
+							// Break a line
 							y += CellHeight;
 							line++;
+							x = paddingX + CellWidth;
 						}
 					}
 
@@ -89,18 +94,60 @@ namespace Prime
 				x -= CellWidth;
 				y -= CellHeight;
 
-				if (i + page * cellsPerPage < elementCount)
+				if (i + currentPage * cellsPerPage < elementCount)
 				{
-					Selected = elements[i + page * cellsPerPage];
+					Selected = elements[i + currentPage * cellsPerPage];
 					selectedHightlight.IsVisible = true;
 
 					selectedHightlight.RelativePosition.X = - Width / 2 + CellWidth / 2;
-					selectedHightlight.RelativePosition.Y = -paddingY;
+					selectedHightlight.RelativePosition.Y = - Height / 2 + CellHeight / 2;
 					selectedHightlight.RelativePosition += new Vector2(x, y);
 
 					OnSelected?.Invoke(Selected);
 				}
 			}
+		}
+
+		public T Add(T obj, TextComponent e)
+		{
+			elements.Add(obj);
+
+			this.Add(e);
+			
+			int page = 0, x = 0, y = 0;
+
+			for (int i = 0; i < elementCount; i++)
+			{
+				x++;
+
+				if (x >= cellsPerLine)
+				{
+					x = 0;
+					y++;
+				}
+
+				if (y * cellsPerLine + x >= cellsPerPage)
+				{
+					page++;
+					y = 1;
+					x = 0;
+				}
+			}
+
+			e.Alignment = Alignment.Center;
+
+			e.Origin.X += CellWidth * x;
+
+			e.Origin.Y -= Height / 2;
+			e.Origin.Y += CellHeight * y + CellHeight / 2;
+			e.Origin.Y -= e.Font.MeasureString("ABC").Y / 2;
+
+			// Only visible if on current page
+			e.IsVisible = page == currentPage;
+
+			elementCount++;
+
+			return obj;
 		}
 
 		public T Add(T obj, Texture2D cell)
