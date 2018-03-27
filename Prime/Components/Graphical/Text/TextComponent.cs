@@ -5,6 +5,8 @@ namespace Prime
 {
 	public class TextComponent : Component
 	{
+		public bool IsVisible = true;
+
 		private string content;
 		public string Content
 		{
@@ -65,6 +67,9 @@ namespace Prime
 		public override void Draw(SpriteBatch sp)
 		{
 			base.Draw(sp);
+
+			if ( !IsVisible )
+				return;
 
 			sp.DrawString(
 					this.Font,

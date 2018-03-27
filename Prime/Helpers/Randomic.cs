@@ -9,6 +9,11 @@ namespace Prime
 			return r.Next(100) < chance;
 		}
 
+		public static int Rand()
+		{
+			return r.Next();
+		}
+
 		public static int Rand(int max)
 		{
 			return r.Next(max);
