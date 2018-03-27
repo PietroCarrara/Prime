@@ -1,5 +1,6 @@
 using Prime;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -9,9 +10,13 @@ namespace Prime
 	{
 		public new Vector2 Position {get; set;}
 
+		public float Width, Height;
+
 		private List<UIEntity> children = new List<UIEntity>();
 
 		private UIEntity parent;
+
+		public bool IsVisible = true;
 
 		protected Vector2 AbsolutePosition
 		{
@@ -37,6 +42,15 @@ namespace Prime
 			}
 		}
 
+		public UIEntity()
+		{  }
+
+		public UIEntity( float w, float h )
+		{
+			this.Width = w;
+			this.Height = h;
+		}
+
 		public override void Update()
 		{
 			base.Update();
@@ -46,6 +60,12 @@ namespace Prime
 				pos += parent.Position;
 
 			base.Position = pos + Position - new Vector2(1280, 720) / 2f;
+		}
+
+		public override void Draw(SpriteBatch sp)
+		{
+			if ( IsVisible )
+				base.Draw(sp);
 		}
 
 		// Adds a UIEntity to this container

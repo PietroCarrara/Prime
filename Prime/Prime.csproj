@@ -50,7 +50,6 @@
     <Compile Include="Components\Graphical\Camera\DelayedFollowTarget.cs" />
     <Compile Include="Components\Graphical\Camera\Camera.cs" />
     <Compile Include="Components\Graphical\Text\TextComponent.cs" />
-    <Compile Include="Components\Graphical\UI\Box.cs" />
     <Compile Include="Components\Graphical\UI\Button.cs" />
     <Compile Include="Components\Graphical\UI\ListView.cs" />
     <Compile Include="Components\Graphical\UI\TextBox.cs" />

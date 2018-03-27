@@ -49,8 +49,6 @@ namespace Prime
 
 		public SpriteFont Font;
 
-		public float Width, Height;
-
 		public TextBox(float w, float h, SpriteFont font, Sprite bg)
 		{
 			this.Width = w;
@@ -72,11 +70,13 @@ namespace Prime
 			this.Add(TextComponent);
 			this.TextComponent.Origin = new Vector2(this.Width, this.Height) / -2;
 
-			this.Scene.Game.Window.TextInput += (obj, e) =>
-			{
-				receiveChar(e.Character);
-				receiveKey(e.Key);
-			};
+			this.Scene.Game.Window.TextInput += handleText;
+		}
+
+		private void handleText(object obj, TextInputEventArgs e)
+		{
+			receiveChar(e.Character);
+			receiveKey(e.Key);
 		}
 
 		public override void Update()
@@ -100,8 +100,6 @@ namespace Prime
 				int totalChars = displayText[0].Length;
 				int carretLine = 0;
 				
-				int inLineIndex;
-
 				foreach(var l in displayText.Skip(1))
 				{
 					if (totalChars >= carretIndex)
@@ -138,8 +136,6 @@ namespace Prime
 				int totalChars = displayText[0].Length;
 				int carretLine = 0;
 				
-				int inLineIndex;
-
 				foreach(var l in displayText.Skip(1))
 				{
 					if (totalChars >= carretIndex)
@@ -183,6 +179,13 @@ namespace Prime
 			s = s.Replace("\t", "    ");
 
 			return s;
+		}
+
+		public override void OnDestroy()
+		{
+			base.OnDestroy();
+
+			this.Scene.Game.Window.TextInput -= handleText;
 		}
 
 		private void fit()
