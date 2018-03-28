@@ -8,6 +8,8 @@ namespace Prime
 {
     public class PrimeGame : Game
     {
+		public static PrimeGame Game;
+
 		// The spritebatch that draws tem all
 		private SpriteBatch drawer;
 
@@ -51,6 +53,8 @@ namespace Prime
 
         public PrimeGame(Scene s)
         {
+			Game = this;
+
             graphics = new GraphicsDeviceManager(this);
 			this.Window.AllowUserResizing = true;
 
