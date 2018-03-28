@@ -45,6 +45,8 @@
     <Compile Include="Components\Graphical\Sprites\Sprite.cs" />
     <Compile Include="Components\Graphical\Text\Text.cs" />
     <Compile Include="Components\Graphical\Text\Alignment.cs" />
+    <Compile Include="Components\Graphical\Tiled\TilingMap.cs" />
+    <Compile Include="Components\Graphical\Tiled\TilingLayer.cs" />
     <Compile Include="Components\Graphical\Camera\Camera2D.cs" />
     <Compile Include="Components\Graphical\Camera\FollowTarget.cs" />
     <Compile Include="Components\Graphical\Camera\DelayedFollowTarget.cs" />
@@ -60,14 +62,8 @@
     <Reference Include="MonoGame.Extended">
       <HintPath>..\packages\MonoGame.Extended.0.6.602\lib\portable-net45+win8+wpa81\MonoGame.Extended.dll</HintPath>
     </Reference>
-    <Reference Include="MonoGame.Extended.Gui">
-      <HintPath>..\packages\MonoGame.Extended.Gui.0.6.602\lib\portable-net45+win8+wpa81\MonoGame.Extended.Gui.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Animations">
-      <HintPath>..\packages\MonoGame.Extended.Animations.0.6.602\lib\portable-net45+win8+wpa81\MonoGame.Extended.Animations.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Graphics">
-      <HintPath>..\packages\MonoGame.Extended.Graphics.0.6.602\lib\portable-net45+win8+wpa81\MonoGame.Extended.Graphics.dll</HintPath>
+    <Reference Include="MonoGame.Extended.Tiled">
+      <HintPath>..\packages\MonoGame.Extended.Tiled.0.6.602\lib\portable-net45+win8+wpa81\MonoGame.Extended.Tiled.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>..\packages\MonoGame.Framework.Portable.3.6.0.1625\lib\portable-net45+win8+wpa81\MonoGame.Framework.dll</HintPath>
