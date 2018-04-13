@@ -140,7 +140,7 @@ namespace Prime
 
 		public static Vector2 MousePosition()
 		{
-			return mouse.Position.ToVector2();
+			return PrimeGame.Game.ViewportAdapter.PointToScreen( mouse.Position ).ToVector2();
 		}
 
 		public static Vector2 MousePosition(Camera c)
