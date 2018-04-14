@@ -38,6 +38,38 @@ namespace Prime
 			}
 		}
 
+		public int TileWidth
+		{
+			get
+			{
+				return (int) (map.TileWidth * Scale.X);
+			}
+		}
+
+		public int TileHeight
+		{
+			get
+			{
+				return (int) (map.TileHeight * Scale.Y);
+			}
+		}
+
+		public int WidthInTiles
+		{
+			get
+			{
+				return map.Width;
+			}
+		}
+
+		public int HeightInTiles
+		{
+			get
+			{
+				return map.Height;
+			}
+		}
+
 		public Dictionary<string, TilingLayer> Layers = new Dictionary<string, TilingLayer>();
 
 		public TilingMap(TiledMap t)

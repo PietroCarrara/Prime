@@ -23,9 +23,9 @@ namespace Prime
 		public override void Draw(SpriteBatch sp)
 		{
 			base.Draw(sp);
-			
+
 			// Create a matrix to scale X and Y, we don't care about Z
-			var matrix = Matrix.CreateScale(parent.Scale.X, parent.Scale.Y, 1) * PrimeGame.Game.ViewportAdapter.GetScaleMatrix();
+			var matrix = Matrix.CreateScale(parent.Scale.X , parent.Scale.Y , 1);
 
 			// Position it according to the camera and the parent position
 			var pos = parent.Position - PrimeGame.Game.ActiveScene.Cam.Position;
