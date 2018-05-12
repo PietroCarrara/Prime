@@ -20,6 +20,11 @@ namespace Prime
 			mouse = Mouse.GetState();
 		}
 
+		public static bool HasFocus()
+		{
+			return PrimeGame.Game.IsActive;
+		}
+
 		public static bool IsKeyDown(Keys k)
 		{
 			return kbdState.IsKeyDown(k);
