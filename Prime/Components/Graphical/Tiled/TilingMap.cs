@@ -88,5 +88,15 @@ namespace Prime
 				this.Scene.Add(layer);
 			}
 		}
+
+		public override void OnDestroy()
+		{
+			base.OnDestroy();
+
+			foreach (var l in map.Layers)
+			{
+				Layers[l.Name].Destroy();
+			}
+		}
 	}
 }
