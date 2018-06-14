@@ -55,6 +55,7 @@
     <Compile Include="Components\Graphical\UI\Button.cs" />
     <Compile Include="Components\Graphical\UI\ListView.cs" />
     <Compile Include="Components\Graphical\UI\TextBox.cs" />
+    <Compile Include="Components\Graphical\UI\InputBox.cs" />
     <Compile Include="Components\Graphical\UI\UIEntity.cs" />
     <Compile Include="Components\Collision\CollisionResult.cs" />
   </ItemGroup>

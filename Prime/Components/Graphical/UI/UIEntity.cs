@@ -16,7 +16,22 @@ namespace Prime
 
 		private UIEntity parent;
 
-		public bool IsVisible = true;
+		private bool isVisible = true;
+		public bool IsVisible
+		{
+			get
+			{
+				return isVisible;
+			}
+			set
+			{
+				this.isVisible = value;
+				foreach(var c in children)
+				{
+					c.IsVisible = value;
+				}
+			}
+		}
 
 		protected Vector2 AbsolutePosition
 		{
@@ -77,6 +92,8 @@ namespace Prime
 
 			e.parent = this;
 			e.DrawOrder = this.DrawOrder;
+
+			e.IsVisible = this.IsVisible;
 
 			return e;
 		}
