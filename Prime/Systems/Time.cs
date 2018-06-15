@@ -1,24 +1,43 @@
+using System;
 using Microsoft.Xna.Framework;
 
 namespace Prime
 {
 	public static class Time
 	{
+		private static TimeSpan totalGameTime;
+		private static TimeSpan deltaTime;
+
 		internal static GameTime GameTime
 		{
 			set
 			{
-				dt = (float) value.ElapsedGameTime.TotalSeconds;
+				deltaTime = value.ElapsedGameTime;
+				totalGameTime = value.TotalGameTime;
 			}
 		}
 
-		private static float dt;
+		public static TimeSpan DeltaGameTime
+		{
+			get
+			{
+				return deltaTime;
+			}
+		}
+
+		public static TimeSpan TotalGameTime
+		{
+			get
+			{
+				return totalGameTime;
+			}
+		}
 
 		public static float DetlaTime
 		{
 			get
 			{
-				return dt;
+				return (float) deltaTime.TotalSeconds;
 			}
 		}
 	}

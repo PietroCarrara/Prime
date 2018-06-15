@@ -17,7 +17,7 @@ namespace Prime
 		private UIEntity parent;
 
 		private bool isVisible = true;
-		public bool IsVisible
+		public virtual bool IsVisible
 		{
 			get
 			{
