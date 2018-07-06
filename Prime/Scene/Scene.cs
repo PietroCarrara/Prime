@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using MonoGame.Extended;
+using GeonBit.UI;
 
 namespace Prime
 {
@@ -14,6 +15,8 @@ namespace Prime
 		public ContentManager Content;
 
 		public Color ClearColor = Color.CornflowerBlue;
+
+		public UserInterface UI { get; private set; }
 
 		private List<Entity> byUpdateOrder = new List<Entity>();
 		private List<Entity> byDrawOrder = new List<Entity>();
@@ -59,7 +62,9 @@ namespace Prime
 
 		public T AddUI<T>(T e) where T : Prime.UI.UIEntity
 		{
-			GeonBit.UI.UserInterface.Active.AddEntity(e.Entity);
+			e.Initialize(this);
+
+			this.UI.AddEntity(e.Entity);
 
 			return e;
 		}
@@ -74,6 +79,8 @@ namespace Prime
 			this.Cam.Camera2D = new Camera2D(this.Game.ViewportAdapter);
 			this.Cam.Position = new Vector2(1280 / 2f, 720 / 2f);
 			this.Cam.Initialize();
+
+			this.UI = new UserInterface();
 		}
 
 		public void Draw(SpriteBatch sp)
@@ -144,6 +151,13 @@ namespace Prime
 					index++;
 			}
 			byUpdateOrder.Insert(index, e);
+		}
+
+		protected void Destroy()
+		{
+			destroyQueue = entities;
+			
+			this.UI.Dispose();
 		}
 	}
 }

@@ -9,9 +9,16 @@ namespace Prime.UI
 	{
 		public GeonBit.UI.Entities.Entity Entity { get; protected set; }
 
-		public virtual void Destroy()
+		public Scene Scene { get; private set; }
+
+		public void Initialize(Scene s)
 		{
-			UserInterface.Active.RemoveEntity(this.Entity);
+			this.Scene = s;
+		}
+
+		public void Destroy()
+		{
+			Scene.UI.RemoveEntity(this.Entity);
 		}
 	}
 }

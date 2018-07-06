@@ -32,7 +32,10 @@ namespace Prime
 				activeScene.Game = this;
 				activeScene.Content = new ContentManager(Content.ServiceProvider);
 				activeScene.Content.RootDirectory = "Content";
+
 				activeScene.Initialize();
+
+				UserInterface.Active = activeScene.UI;
 			}
 		}
 
@@ -64,9 +67,6 @@ namespace Prime
 			Content.RootDirectory = "Content";
 
 			activeScene = s;
-			activeScene.Game = this;
-			activeScene.Content = new ContentManager(Content.ServiceProvider);
-			activeScene.Content.RootDirectory = "Content";
 
 			base.IsMouseVisible = true;
 		}
@@ -80,7 +80,7 @@ namespace Prime
 			UserInterface.Initialize(this.Content, "hd");
 
 			// Initialize the first scene
-			activeScene.Initialize();
+			ActiveScene = activeScene;
 		}
 
 		protected override void LoadContent()
