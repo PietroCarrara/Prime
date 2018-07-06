@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
+using GeonBit.UI;
 
 namespace Prime
 {
@@ -76,6 +77,8 @@ namespace Prime
 
 			this.viewPortAdapter = new BoxingViewportAdapter(this.Window, this.graphics, 1280, 720);
 
+			UserInterface.Initialize(this.Content, BuiltinThemes.hd);
+
 			// Initialize the first scene
 			activeScene.Initialize();
         }
@@ -97,7 +100,9 @@ namespace Prime
 			Input.Update();
 			Tasks.Update();
 			
+			UserInterface.Active.Update(gameTime);
 			activeScene.Update();
+
 
 			Colliders.Update();
 		}
@@ -105,14 +110,19 @@ namespace Prime
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(activeScene.ClearColor);
-
+			
 			Time.GameTime = gameTime;
 
 			drawer.Begin(transformMatrix: activeScene.Cam.Camera2D.GetViewMatrix(), samplerState: SamplerState.PointClamp);
-
 			activeScene.Draw(drawer);
-
 			drawer.End();
+
+			// Draw GeonBit's UI
+			var vp = GraphicsDevice.Viewport;
+			GraphicsDevice.Viewport = new Viewport(GraphicsDevice.PresentationParameters.Bounds);
+			UserInterface.Active.UseRenderTarget = true;
+			UserInterface.Active.Draw(drawer);
+			GraphicsDevice.Viewport = vp;
 
             base.Draw(gameTime);
         }

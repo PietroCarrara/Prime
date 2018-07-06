@@ -143,11 +143,6 @@ namespace Prime
 			return btState == ButtonState.Released && prevBtState == ButtonState.Pressed;
 		}
 
-		public static Vector2 MousePosition()
-		{
-			return PrimeGame.Game.ViewportAdapter.PointToScreen( mouse.Position ).ToVector2();
-		}
-
 		public static Vector2 MousePosition(Camera c)
 		{
 			
