@@ -27,8 +27,10 @@ namespace Prime
 			set
 			{
 				activeScene = value;
-				activeScene.Initialize();
 				activeScene.Game = this;
+				activeScene.Content = new ContentManager(Content.ServiceProvider);
+				activeScene.Content.RootDirectory = "Content";
+				activeScene.Initialize();
 				return;
 			}
 		}
