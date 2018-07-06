@@ -69,6 +69,12 @@
     <Reference Include="MonoGame.Framework">
       <HintPath>..\packages\MonoGame.Framework.Portable.3.6.0.1625\lib\portable-net45+win8+wpa81\MonoGame.Framework.dll</HintPath>
     </Reference>
+	<Reference Include="GeonBit.UI.DataTypes">
+		<HintPath>..\packages\GeonBit.UI.3.1.0.4\lib\geonbitui\DataTypes.dll</HintPath>
+	</Reference>
+	<Reference Include="GeonBit.UI">
+		<HintPath>..\packages\GeonBit.UI.3.1.0.4\lib\geonbitui\GeonBit.UI.dll</HintPath>
+	</Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
