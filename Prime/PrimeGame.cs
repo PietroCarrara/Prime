@@ -33,7 +33,6 @@ namespace Prime
 				activeScene.Content = new ContentManager(Content.ServiceProvider);
 				activeScene.Content.RootDirectory = "Content";
 				activeScene.Initialize();
-				return;
 			}
 		}
 
@@ -77,6 +76,8 @@ namespace Prime
 			base.Initialize();
 
 			this.viewPortAdapter = new BoxingViewportAdapter(this.Window, this.graphics, 1280, 720);
+
+			UserInterface.Initialize(this.Content, "hd");
 
 			// Initialize the first scene
 			activeScene.Initialize();

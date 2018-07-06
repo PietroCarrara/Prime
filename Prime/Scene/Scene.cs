@@ -45,13 +45,21 @@ namespace Prime
 		public Scene()
 		{  }
 
-		public T Add<T>(T e) where T : Entity
+
+		public T Add<T>(T e) where T : Prime.Entity
 		{
 			addQueue.Add(e);
 		
 			e.Scene = this;
 
 			e.Initialize();
+
+			return e;
+		}
+
+		public T AddUI<T>(T e) where T : Prime.UI.UIEntity
+		{
+			GeonBit.UI.UserInterface.Active.AddEntity(e.Entity);
 
 			return e;
 		}
