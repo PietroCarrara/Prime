@@ -41,28 +41,23 @@
     <Compile Include="Components\Graphical\Sprites\SpriteSheet.cs" />
     <Compile Include="Components\Collision\RectangleCollider.cs" />
     <Compile Include="Components\Collision\CircleCollider.cs" />
+    <Compile Include="Components\Collision\CollisionResult.cs" />
     <Compile Include="Components\Graphical\Sprites\Prototyping\RectangleSprite.cs" />
     <Compile Include="Components\Graphical\Sprites\Sprite.cs" />
-    <Compile Include="Components\Graphical\Text\Text.cs" />
-    <Compile Include="Components\Graphical\Text\Alignment.cs" />
     <Compile Include="Components\Graphical\Tiled\TilingMap.cs" />
     <Compile Include="Components\Graphical\Tiled\TilingLayer.cs" />
     <Compile Include="Components\Graphical\Camera\Camera2D.cs" />
     <Compile Include="Components\Graphical\Camera\FollowTarget.cs" />
     <Compile Include="Components\Graphical\Camera\DelayedFollowTarget.cs" />
     <Compile Include="Components\Graphical\Camera\Camera.cs" />
-    <Compile Include="Components\Graphical\Text\TextComponent.cs" />
-    <Compile Include="Components\Graphical\UI\ListView.cs" />
-    <Compile Include="Components\Graphical\UI\TextBox.cs" />
-    <Compile Include="Components\Graphical\UI\InputBox.cs" />
-    <Compile Include="Components\Graphical\UI\UIEntity.cs" />
     <Compile Include="Components\Graphical\GeonBit\UIEntity.cs" />
     <Compile Include="Components\Graphical\GeonBit\AnchorPoint.cs" />
     <Compile Include="Components\Graphical\GeonBit\Button.cs" />
     <Compile Include="Components\Graphical\GeonBit\Panel.cs" />
     <Compile Include="Components\Graphical\GeonBit\SelectList.cs" />
     <Compile Include="Components\Graphical\GeonBit\TextInput.cs" />
-    <Compile Include="Components\Collision\CollisionResult.cs" />
+    <Compile Include="Components\Graphical\GeonBit\Label.cs" />
+    <Compile Include="Components\Graphical\GeonBit\Image.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended">

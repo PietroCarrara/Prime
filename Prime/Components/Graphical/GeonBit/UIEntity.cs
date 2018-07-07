@@ -27,6 +27,22 @@ namespace Prime.UI
 			}
 		}
 
+		public Vector2 Offset
+		{
+			set
+			{
+				this.Entity.SetOffset(value);
+			}
+		}
+
+		public Vector2 Size
+		{
+			get
+			{
+				return this.Entity.Size;
+			}
+		}
+
 		public void Initialize(Scene s)
 		{
 			this.Scene = s;

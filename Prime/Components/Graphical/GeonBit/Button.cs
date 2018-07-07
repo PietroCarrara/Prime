@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace Prime.UI
 {
-	public class Button : Prime.UI.UIEntity
+	public class Button : UIEntity
 	{
 		public Action OnClick;
 
