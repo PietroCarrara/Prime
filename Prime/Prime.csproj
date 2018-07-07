@@ -61,6 +61,7 @@
     <Compile Include="Components\Graphical\GeonBit\Button.cs" />
     <Compile Include="Components\Graphical\GeonBit\Panel.cs" />
     <Compile Include="Components\Graphical\GeonBit\SelectList.cs" />
+    <Compile Include="Components\Graphical\GeonBit\TextInput.cs" />
     <Compile Include="Components\Collision\CollisionResult.cs" />
   </ItemGroup>
   <ItemGroup>
