@@ -3,17 +3,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Prime.Graphics
 {
-    public class Sprite : Component
-    {
-        public Texture2D Tex;
+	public class Sprite : Component
+	{
+		public Texture2D Tex;
 
 		public bool IsVisible = true;
 
-        public Vector2? Origin;
+		public Vector2? Origin;
 
 		public Vector2 RelativePosition;
 
-        public float Rotation;
+		public float Rotation;
 
 		public bool FlipX, FlipY;
 
@@ -36,80 +36,93 @@ namespace Prime.Graphics
 			}
 		}
 
-        public Sprite(Texture2D tex)
-        {
-            Tex = tex;
+		public Sprite(Texture2D tex)
+		{
+			Tex = tex;
 
-            Origin = new Vector2(tex.Width / 2f, tex.Height / 2f);
-        }
+			Origin = new Vector2(tex.Width / 2f, tex.Height / 2f);
+		}
 
 		internal Sprite()
-		{  }
+		{ }
 
-        public Sprite(Texture2D tex, Vector2 origin)
-        {
-            Tex = tex;
+		public Sprite(Texture2D tex, Vector2 origin)
+		{
+			Tex = tex;
 
-            Origin = origin;
-        }
+			Origin = origin;
+		}
 
-        protected Vector2 scale = Vector2.One;
+		protected Vector2 scale = Vector2.One;
 
-        public virtual float Width
-        {
-            get
-            {
-				if(SourceRectangle != null)
+		public virtual float Width
+		{
+			get
+			{
+				if (SourceRectangle.HasValue)
 					return SourceRectangle.Value.Width * scale.X;
 
-                return Tex.Width * scale.X;
-            }
-            set
-            {
-				if(SourceRectangle != null)
-                	scale.X = value / SourceRectangle.Value.Width;
+				return Tex.Width * scale.X;
+			}
+			set
+			{
+				if (SourceRectangle.HasValue)
+					scale.X = value / SourceRectangle.Value.Width;
 				else
-                	scale.X = value / Tex.Width;
-            }
-        }
+					scale.X = value / Tex.Width;
+			}
+		}
 
-        public virtual float Height
-        {
-            get
-            {
-				if(SourceRectangle != null)
+		public virtual float Height
+		{
+			get
+			{
+				if (SourceRectangle != null)
 					return this.SourceRectangle.Value.Height * scale.Y;
 
-                return Tex.Height * scale.Y;
-            }
-            set
-            {
-				if(SourceRectangle != null)
-                	scale.Y = value / SourceRectangle.Value.Height;
+				return Tex.Height * scale.Y;
+			}
+			set
+			{
+				if (SourceRectangle != null)
+					scale.Y = value / SourceRectangle.Value.Height;
 				else
-                	scale.Y = value / Tex.Height;
-            }
-        }
+					scale.Y = value / Tex.Height;
+			}
+		}
 
-        public override void Draw(SpriteBatch sp)
-        {
-			if(!IsVisible)
+		public override void Draw(SpriteBatch sp)
+		{
+			if (!IsVisible)
 				return;
+
+			var coll = new RectangleCollider(this.Width, this.Height);
+			if (this.Origin.HasValue)
+				coll.Origin = this.Origin.Value;
+
+			var e = new Entity();
+			e.Position = Owner.Position + this.RelativePosition;
+			e.Add(coll);
+
+			if (!coll.CollidesWith(this.Owner.Scene.Cam.Bounds))
+			{
+				return;
+			}
 
 			var ef = SpriteEffects.None;
 
-			if(FlipX)
+			if (FlipX)
 				ef = SpriteEffects.FlipHorizontally;
-			
-			if(FlipY)
+
+			if (FlipY)
 			{
-				if(ef != SpriteEffects.None)
+				if (ef != SpriteEffects.None)
 					ef |= SpriteEffects.FlipVertically;
 				else
 					ef = SpriteEffects.FlipVertically;
 			}
 
-            sp.Draw(
+			sp.Draw(
 					texture: Tex,
 					position: Owner.Position + RelativePosition,
 					color: Color.White,
@@ -119,7 +132,7 @@ namespace Prime.Graphics
 					effects: ef,
 					sourceRectangle: SourceRectangle
 					);
-        }
+		}
 
 		public virtual Sprite Clone()
 		{
@@ -136,5 +149,5 @@ namespace Prime.Graphics
 
 			return res;
 		}
-    }
+	}
 }

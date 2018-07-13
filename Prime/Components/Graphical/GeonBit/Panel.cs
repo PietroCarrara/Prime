@@ -11,7 +11,7 @@ namespace Prime.UI
 
 		public Panel(Vector2 size, AnchorPoint a = AnchorPoint.Auto, Vector2? offset = null)
 		{
-			this.panel = new GeonBit.UI.Entities.Panel(size, PanelSkin.Default, (Anchor) a, offset);
+			this.panel = new GeonBit.UI.Entities.Panel(size, PanelSkin.Default, (Anchor)a, offset);
 			this.Entity = this.panel;
 		}
 	}

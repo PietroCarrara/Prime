@@ -13,7 +13,7 @@ namespace Prime
 		{
 			get
 			{
-				return this.Owner.Position + Origin;
+				return this.Owner.Position - Origin;
 			}
 		}
 
@@ -22,21 +22,19 @@ namespace Prime
 			this.Width = w;
 			this.Height = h;
 
-			this.Origin.X = -Width / 2;
-			this.Origin.Y = -Height / 2;
+			this.Origin.X = Width / 2;
+			this.Origin.Y = Height / 2;
 		}
 
 		public override bool CollidesWith(Shape s)
 		{
-			if (s is RectangleCollider)
+			if (s is RectangleCollider r)
 			{
-				var r = (RectangleCollider) s;
-
 				return CollidesWith(r);
 			}
 			else
 			{
-				throw new NotImplementedException();
+				throw new NotImplementedException("Rectangles can only collide with other rectangles!");
 			}
 		}
 

@@ -60,11 +60,8 @@
     <Compile Include="Components\Graphical\GeonBit\Image.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Extended">
-      <HintPath>..\packages\MonoGame.Extended.0.6.602\lib\portable-net45+win8+wpa81\MonoGame.Extended.dll</HintPath>
-    </Reference>
     <Reference Include="MonoGame.Extended.Tiled">
-      <HintPath>..\packages\MonoGame.Extended.Tiled.0.6.602\lib\portable-net45+win8+wpa81\MonoGame.Extended.Tiled.dll</HintPath>
+      <HintPath>..\packages\MonoGame.Extended.Graphics.0.6.602\lib\portable-net45+win8+wpa81\MonoGame.Extended.Graphics.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>..\packages\MonoGame.Framework.Portable.3.6.0.1625\lib\portable-net45+win8+wpa81\MonoGame.Framework.dll</HintPath>
@@ -74,6 +71,18 @@
 	</Reference>
 	<Reference Include="GeonBit.UI">
 		<HintPath>..\packages\GeonBit.UI.3.1.0.4\lib\geonbitui\GeonBit.UI.dll</HintPath>
+	</Reference>
+	<Reference Include="Newtonsoft.Json">
+	  <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+	</Reference>
+	<Reference Include="MonoGame.Extended">
+	  <HintPath>..\..\packages\MonoGame.Extended.1.1.0\lib\portable-net45+win8+wpa81\MonoGame.Extended.dll</HintPath>
+	</Reference>
+	<Reference Include="MonoGame.Extended.Graphics">
+	  <HintPath>..\..\packages\MonoGame.Extended.Graphics.1.1.0\lib\portable-net45+win8+wpa81\MonoGame.Extended.Graphics.dll</HintPath>
+	</Reference>
+	<Reference Include="MonoGame.Extended.Tiled">
+	  <HintPath>..\..\packages\MonoGame.Extended.Tiled.1.1.0\lib\portable-net45+win8+wpa81\MonoGame.Extended.Tiled.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>

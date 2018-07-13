@@ -1,6 +1,7 @@
 using Prime;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
@@ -10,7 +11,7 @@ namespace Prime
 {
 	public class TilingMap : Entity
 	{
-		private TiledMap map;
+		internal TiledMap map { get; private set; }
 		private TiledMapRenderer renderer = new TiledMapRenderer(PrimeGame.Game.GraphicsDevice);
 
 		public Vector2 Scale = Vector2.One;
@@ -75,6 +76,11 @@ namespace Prime
 		public TilingMap(TiledMap t)
 		{
 			map = t;
+		}
+
+		public static TilingMap Load(ContentManager c, string path)
+		{
+			return new TilingMap(c.Load<TiledMap>(path));
 		}
 
 		public override void Initialize()
