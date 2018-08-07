@@ -54,6 +54,11 @@ namespace Prime.UI
 		{
 			this.Entity.AddChild(e.Entity);
 		}
+        
+        public void GetFocus()
+        {
+			this.Scene.UI.ActiveEntity = this.Entity;
+        }
 
 		public void Destroy()
 		{

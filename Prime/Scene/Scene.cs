@@ -81,7 +81,7 @@ namespace Prime
 			this.Cam.Initialize();
 
 			this.UI = new UserInterface();
-		}
+        }
 
 		public void Draw(SpriteBatch sp)
 		{

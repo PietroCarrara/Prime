@@ -34,8 +34,9 @@ namespace Prime
 				activeScene.Content.RootDirectory = "Content";
 
 				activeScene.Initialize();
+                UserInterface.Active = activeScene.UI;
 
-				UserInterface.Active = activeScene.UI;
+				activeScene.UI.UseRenderTarget = true;
 			}
 		}
 
@@ -70,7 +71,7 @@ namespace Prime
 
 			base.IsMouseVisible = true;
 		}
-
+        
 		protected override void Initialize()
 		{
 			base.Initialize();
@@ -78,7 +79,7 @@ namespace Prime
 			this.viewPortAdapter = new BoxingViewportAdapter(this.Window, this.graphics, 1280, 720);
 
 			UserInterface.Initialize(this.Content, "hd");
-
+            
 			// Initialize the first scene
 			ActiveScene = activeScene;
 		}
@@ -112,17 +113,18 @@ namespace Prime
 
 			Time.GameTime = gameTime;
 
+            UserInterface.Active.Draw(drawer);
+
 			drawer.Begin(transformMatrix: activeScene.Cam.Camera2D.GetViewMatrix(), samplerState: SamplerState.PointClamp);
 			activeScene.Draw(drawer);
-			drawer.End();
+            drawer.End();
+            
+            UserInterface.Active.DrawMainRenderTarget(drawer);
 
 			// Draw GeonBit's UI
-			var vp = GraphicsDevice.Viewport;
-			GraphicsDevice.Viewport = new Viewport(GraphicsDevice.PresentationParameters.Bounds);
-			UserInterface.Active.Draw(drawer);
-			GraphicsDevice.Viewport = vp;
+			// var vp = GraphicsDevice.Viewport;
 
-			base.Draw(gameTime);
+            base.Draw(gameTime);
 		}
 	}
 }
