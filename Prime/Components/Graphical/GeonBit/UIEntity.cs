@@ -1,7 +1,4 @@
-using System;
 using Microsoft.Xna.Framework;
-using GeonBit.UI;
-using GeonBit.UI.Entities;
 
 namespace Prime.UI
 {
@@ -11,7 +8,21 @@ namespace Prime.UI
 
 		public GeonBit.UI.Entities.Entity Entity { get; protected set; }
 
+		private bool attached;
+
 		public Scene Scene { get; private set; }
+
+		public bool Draggable
+		{
+			get
+			{
+				return this.Entity.Draggable;
+			}
+			set
+			{
+				this.Entity.Draggable = value;
+			}
+		}
 
 		public EntityCallback OnValueChange;
 
@@ -54,15 +65,28 @@ namespace Prime.UI
 		{
 			this.Entity.AddChild(e.Entity);
 		}
-        
-        public void GetFocus()
-        {
-			this.Scene.UI.ActiveEntity = this.Entity;
-        }
 
-		public void Destroy()
+		public void GetFocus()
 		{
-			Scene.UI.RemoveEntity(this.Entity);
+			this.Scene.UI.ActiveEntity = this.Entity;
+		}
+
+		public void Attach()
+		{
+			if (!this.attached)
+			{
+				this.Scene.UI.AddEntity(this.Entity);
+				this.attached = true;
+			}
+		}
+
+		public void Unnatach()
+		{
+			if (this.attached)
+			{
+				this.Scene.UI.RemoveEntity(this.Entity);
+				this.attached = false;
+			}
 		}
 	}
 }

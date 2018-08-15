@@ -58,6 +58,7 @@
     <Compile Include="Components\Graphical\GeonBit\TextInput.cs" />
     <Compile Include="Components\Graphical\GeonBit\Label.cs" />
     <Compile Include="Components\Graphical\GeonBit\Image.cs" />
+    <Compile Include="Components\Graphical\GeonBit\Header.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended.Tiled">

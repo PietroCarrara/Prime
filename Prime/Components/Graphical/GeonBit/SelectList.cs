@@ -8,7 +8,7 @@ namespace Prime.UI
 {
 	public class SelectList<T> : UIEntity
 	{
-		private List<T> items = new List<T>();
+		public List<T> Items { get; private set; } = new List<T>();
 
 		private GeonBit.UI.Entities.SelectList list;
 
@@ -21,28 +21,27 @@ namespace Prime.UI
 				if (index < 0)
 					return default(T);
 				else
-					return items[index];
+					return Items[index];
 			}
 		}
 
 		public SelectList(AnchorPoint a = AnchorPoint.Auto, Vector2? offset = null) : base()
 		{
-			list = new GeonBit.UI.Entities.SelectList((Anchor) a, offset);
+			list = new GeonBit.UI.Entities.SelectList((Anchor)a, offset);
 
 			this.Entity = list;
 		}
 
 		public SelectList(Vector2 size, AnchorPoint a = AnchorPoint.Auto, Vector2? offset = null)
 		{
-			list = new GeonBit.UI.Entities.SelectList(size, (Anchor) a, offset, PanelSkin.ListBackground);
+			list = new GeonBit.UI.Entities.SelectList(size, (Anchor)a, offset, PanelSkin.ListBackground);
 
 			this.Entity = list;
 		}
 
 		public void Add(string name, T item)
 		{
-			items.Add(item);
-
+			Items.Add(item);
 			list.AddItem(name);
 		}
 	}

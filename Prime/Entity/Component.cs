@@ -5,11 +5,13 @@ namespace Prime
 {
 	public class Component
 	{
-		public Entity Owner;		
+		public bool Initialized { get; private set; }
 
-		public virtual void Initialize() 
+		public Entity Owner;
+
+		public virtual void Initialize()
 		{
-
+			this.Initialized = true;
 		}
 
 		public virtual void Draw(SpriteBatch sp)
@@ -23,6 +25,6 @@ namespace Prime
 		}
 
 		public virtual void OnDestroy()
-		{  }
+		{ }
 	}
 }

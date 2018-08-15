@@ -14,6 +14,8 @@ namespace Prime
 
 		public ContentManager Content;
 
+		public bool Initialized { get; private set; } = false;
+
 		public Color ClearColor = Color.CornflowerBlue;
 
 		public UserInterface UI { get; private set; }
@@ -45,14 +47,10 @@ namespace Prime
 
 		public Camera Cam = new Camera();
 
-		public Scene()
-		{  }
-
-
-		public T Add<T>(T e) where T : Prime.Entity
+		public T Add<T>(T e) where T : Entity
 		{
 			addQueue.Add(e);
-		
+
 			e.Scene = this;
 
 			e.Initialize();
@@ -60,11 +58,11 @@ namespace Prime
 			return e;
 		}
 
-		public T AddUI<T>(T e) where T : Prime.UI.UIEntity
+		public T AddUI<T>(T e) where T : UI.UIEntity
 		{
 			e.Initialize(this);
 
-			this.UI.AddEntity(e.Entity);
+			e.Attach();
 
 			return e;
 		}
@@ -81,11 +79,13 @@ namespace Prime
 			this.Cam.Initialize();
 
 			this.UI = new UserInterface();
-        }
+
+			this.Initialized = true;
+		}
 
 		public void Draw(SpriteBatch sp)
 		{
-			foreach(var e in byDrawOrder)
+			foreach (var e in byDrawOrder)
 			{
 				e.Draw(sp);
 			}
@@ -93,7 +93,7 @@ namespace Prime
 
 		public virtual void Update()
 		{
-			foreach(var e in addQueue)
+			foreach (var e in addQueue)
 			{
 				entities.Add(e);
 				SortUpdate(e);
@@ -109,12 +109,12 @@ namespace Prime
 				e.Update();
 			}
 
-			while(destroyQueue.Any())
+			while (destroyQueue.Any())
 			{
 				var e = destroyQueue[0];
 
 				e.OnDestroy();
-				
+
 				entities.Remove(e);
 				byUpdateOrder.Remove(e);
 				byDrawOrder.Remove(e);
@@ -128,9 +128,9 @@ namespace Prime
 			byDrawOrder.Remove(e);
 
 			int index = 0;
-			foreach(var entity in byDrawOrder)
+			foreach (var entity in byDrawOrder)
 			{
-				if(entity.DrawOrder > e.DrawOrder)
+				if (entity.DrawOrder > e.DrawOrder)
 					break;
 				else
 					index++;
@@ -143,9 +143,9 @@ namespace Prime
 			byUpdateOrder.Remove(e);
 
 			int index = 0;
-			foreach(var entity in byUpdateOrder)
+			foreach (var entity in byUpdateOrder)
 			{
-				if(entity.UpdateOrder > e.UpdateOrder)
+				if (entity.UpdateOrder > e.UpdateOrder)
 					break;
 				else
 					index++;
@@ -156,7 +156,7 @@ namespace Prime
 		protected void Destroy()
 		{
 			destroyQueue = entities;
-			
+
 			this.UI.Dispose();
 		}
 	}
