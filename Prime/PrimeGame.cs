@@ -30,11 +30,13 @@ namespace Prime
 			{
 				activeScene = value;
 
-				if (!value.Initialized)
+				if (!activeScene.Initialized)
 				{
 					activeScene.Game = this;
-					activeScene.Content = new ContentManager(Content.ServiceProvider);
-					activeScene.Content.RootDirectory = "Content";
+					activeScene.Content = new ContentManager(Content.ServiceProvider)
+					{
+						RootDirectory = "Content"
+					};
 
 					activeScene.Initialize();
 				}

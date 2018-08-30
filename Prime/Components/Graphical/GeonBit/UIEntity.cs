@@ -8,6 +8,8 @@ namespace Prime.UI
 
 		public GeonBit.UI.Entities.Entity Entity { get; protected set; }
 
+		public UIEntity Parent { get; private set; }
+
 		private bool attached;
 
 		public Scene Scene { get; private set; }
@@ -63,7 +65,8 @@ namespace Prime.UI
 
 		public void AddChild(UIEntity e)
 		{
-			this.Entity.AddChild(e.Entity);
+			e.Parent = this;
+			this.Scene.AddUI(e);
 		}
 
 		public void GetFocus()
@@ -75,7 +78,11 @@ namespace Prime.UI
 		{
 			if (!this.attached)
 			{
-				this.Scene.UI.AddEntity(this.Entity);
+				if (this.Parent != null)
+					this.Parent.Entity.AddChild(this.Entity);
+				else
+					this.Scene.UI.AddEntity(this.Entity);
+
 				this.attached = true;
 			}
 		}
