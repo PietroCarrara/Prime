@@ -73,6 +73,10 @@ namespace Prime
 
 			Content.RootDirectory = "Content";
 
+			this.IsFixedTimeStep = false;
+			graphics.SynchronizeWithVerticalRetrace = false;
+			graphics.ApplyChanges();
+
 			activeScene = s;
 
 			base.IsMouseVisible = true;
@@ -115,11 +119,12 @@ namespace Prime
 
 		protected override void Draw(GameTime gameTime)
 		{
-			GraphicsDevice.Clear(activeScene.ClearColor);
+			UserInterface.Active.Draw(drawer);
+
+			GraphicsDevice.Clear(ActiveScene.ClearColor);
 
 			Time.GameTime = gameTime;
 
-			UserInterface.Active.Draw(drawer);
 
 			drawer.Begin(transformMatrix: activeScene.Cam.Camera2D.GetViewMatrix(), samplerState: SamplerState.PointClamp);
 			activeScene.Draw(drawer);
