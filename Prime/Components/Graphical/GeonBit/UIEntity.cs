@@ -14,6 +14,18 @@ namespace Prime.UI
 
 		public Scene Scene { get; private set; }
 
+		public bool Enabled
+		{
+			get
+			{
+				return !this.Entity.Disabled;
+			}
+			set
+			{
+				this.Entity.Disabled = !value;
+			}
+		}
+
 		public bool Draggable
 		{
 			get
@@ -87,7 +99,7 @@ namespace Prime.UI
 			}
 		}
 
-		public void Unnatach()
+		public void Unattach()
 		{
 			if (this.attached)
 			{
