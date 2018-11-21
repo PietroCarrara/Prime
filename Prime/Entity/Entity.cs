@@ -63,16 +63,29 @@ namespace Prime
 			return c;
 		}
 
-		public T GetComponent<T>() where T : Component
-		{
-			foreach(var c in components)
-			{
-				if (c is T)
-					return (T) c;
-			}
+        public T GetComponent<T>() where T : Component
+        {
+            foreach(var c in components)
+            {
+                if (c is T t)
+                    return t;
+            }
 
-			return null;
-		}
+            return null;
+        }
+        
+        public List<T> GetComponents<T>() where T : Component
+        {
+			var res = new List<T>();
+        
+            foreach(var c in components)
+            {
+                if (c is T t)
+                    res.Add(t);
+            }
+
+            return res;
+        }
 
 		public void Destroy()
 		{

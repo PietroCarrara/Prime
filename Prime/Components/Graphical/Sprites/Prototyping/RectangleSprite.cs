@@ -9,12 +9,10 @@ namespace Prime.Graphics
 
 		private int width, height;
 
-		public RectangleSprite(int w, int h)
+		public RectangleSprite(int w, int h) : base(w, h, new Vector2(w, h) / 2f)
 		{
 			this.width = w;
 			this.height = h;
-
-			base.Origin = new Vector2(w / 2f, h / 2f);
 		}
 
 		public RectangleSprite(int w, int h, Color c) : this(w, h)

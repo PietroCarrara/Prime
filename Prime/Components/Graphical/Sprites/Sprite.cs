@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace Prime.Graphics
 {
@@ -12,10 +13,24 @@ namespace Prime.Graphics
 		public Vector2? Origin;
 
 		public Vector2 RelativePosition;
-
-		public float Rotation;
+        
+        private float rotation;
+        public float Rotation
+        {
+            get
+            {
+                return rotation;
+            }
+            set
+            {
+				collider.Rotation = value;
+                rotation = value;
+            }
+        }
 
 		public bool FlipX, FlipY;
+
+		private RectangleCollider collider;
 
 		protected Rectangle? sourceRectangle;
 		public Rectangle? SourceRectangle
@@ -36,21 +51,20 @@ namespace Prime.Graphics
 			}
 		}
 
-		public Sprite(Texture2D tex)
-		{
-			Tex = tex;
+        internal Sprite(int width, int height, Vector2 origin)
+        {
+			this.collider = new RectangleCollider(width, height);
+			collider.Origin = origin;
 
-			Origin = new Vector2(tex.Width / 2f, tex.Height / 2f);
-		}
+			this.Origin = origin;
+        }
 
-		internal Sprite()
+		public Sprite(Texture2D tex) : this(tex, new Vector2(tex.Width / 2f, tex.Height / 2f))
 		{ }
-
-		public Sprite(Texture2D tex, Vector2 origin)
+        
+		public Sprite(Texture2D tex, Vector2 origin) : this(tex.Width, tex.Height, origin)
 		{
 			Tex = tex;
-
-			Origin = origin;
 		}
 
 		protected Vector2 scale = Vector2.One;
@@ -96,15 +110,13 @@ namespace Prime.Graphics
 			if (!IsVisible)
 				return;
 
-			var coll = new RectangleCollider(this.Width, this.Height);
-			if (this.Origin.HasValue)
-				coll.Origin = this.Origin.Value;
-
-			var e = new Entity();
-			e.Position = Owner.Position + this.RelativePosition;
-			e.Add(coll);
-
-			if (!coll.CollidesWith(this.Owner.Scene.Cam.Bounds))
+			var e = new Entity
+			{
+				Position = Owner.Position + this.RelativePosition
+			};
+			e.Add(collider);
+            
+            if (!collider.CollidesWith(this.Owner.Scene.Cam.Bounds))
 			{
 				return;
 			}
@@ -131,7 +143,7 @@ namespace Prime.Graphics
 					scale: scale,
 					effects: ef,
 					sourceRectangle: SourceRectangle
-					);
+            );
 		}
 
 		public virtual Sprite Clone()

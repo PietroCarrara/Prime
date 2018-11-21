@@ -22,14 +22,12 @@ namespace Prime.Graphics
 
 		private Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
 
-        public SpriteSheet(Texture2D tex, Point texDimensions, Point frameDimensions)
+        public SpriteSheet(Texture2D tex, Point texDimensions, Point frameDimensions) : base(frameDimensions.X, frameDimensions.Y, frameDimensions.ToVector2() / 2f)
         {
 			this.Tex = tex;
 
 			this.texDimensions = texDimensions;
 			this.frameDimensions = frameDimensions;
-
-			this.Origin = frameDimensions.ToVector2() / 2;
 
 			frameCount.X = texDimensions.X / frameDimensions.X;
 			frameCount.Y = texDimensions.Y / frameDimensions.Y;

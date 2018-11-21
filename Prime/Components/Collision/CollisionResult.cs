@@ -5,14 +5,7 @@ namespace Prime
 {
 	public class CollisionResult
 	{
-		public Direction Direction;
-	}
-
-	public enum Direction
-	{
-		Up,
-		Down,
-		Left,
-		Right
+		public Vector2 MinimumPenetration;
+		public Vector2 BounceVector;
 	}
 }

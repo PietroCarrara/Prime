@@ -5,6 +5,7 @@ using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
 using GeonBit.UI;
 using GeonBit.UI.Entities;
+using System.Diagnostics;
 
 namespace Prime
 {
@@ -97,6 +98,11 @@ namespace Prime
 			base.Update(gameTime);
 
 			Time.GameTime = gameTime;
+
+#if DEBUG
+			Debug.WriteLine("FPS: " + (1 / Time.DetlaTime));
+#endif
+
 			Input.Update();
 			Tasks.Update();
 
@@ -112,7 +118,7 @@ namespace Prime
 
 			Time.GameTime = gameTime;
 
-			drawer.Begin(transformMatrix: activeScene.Cam.Camera2D.GetViewMatrix(), samplerState: SamplerState.PointClamp);
+			drawer.Begin(transformMatrix: activeScene.Cam.Camera2D.GetViewMatrix());
 			activeScene.Draw(drawer);
 			drawer.End();
 
