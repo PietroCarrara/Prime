@@ -30,13 +30,20 @@ namespace Prime
 			set
 			{
 				activeScene = value;
-				activeScene.Game = this;
-				activeScene.Content = new ContentManager(Content.ServiceProvider);
-				activeScene.Content.RootDirectory = "Content";
 
-				activeScene.Initialize();
+				if (!activeScene.Initialized)
+				{
+					activeScene.Game = this;
+					activeScene.Content = new ContentManager(Content.ServiceProvider)
+					{
+						RootDirectory = "Content"
+					};
+
+					activeScene.Initialize();
+				}
 
 				UserInterface.Active = activeScene.UI;
+				activeScene.UI.UseRenderTarget = true;
 			}
 		}
 
@@ -66,6 +73,10 @@ namespace Prime
 			this.Window.AllowUserResizing = true;
 
 			Content.RootDirectory = "Content";
+
+			this.IsFixedTimeStep = false;
+			graphics.SynchronizeWithVerticalRetrace = false;
+			graphics.ApplyChanges();
 
 			activeScene = s;
 
@@ -114,7 +125,9 @@ namespace Prime
 
 		protected override void Draw(GameTime gameTime)
 		{
-			GraphicsDevice.Clear(activeScene.ClearColor);
+			UserInterface.Active.Draw(drawer);
+
+			GraphicsDevice.Clear(ActiveScene.ClearColor);
 
 			Time.GameTime = gameTime;
 
@@ -122,11 +135,10 @@ namespace Prime
 			activeScene.Draw(drawer);
 			drawer.End();
 
+			UserInterface.Active.DrawMainRenderTarget(drawer);
+
 			// Draw GeonBit's UI
-			var vp = GraphicsDevice.Viewport;
-			GraphicsDevice.Viewport = new Viewport(GraphicsDevice.PresentationParameters.Bounds);
-			UserInterface.Active.Draw(drawer);
-			GraphicsDevice.Viewport = vp;
+			// var vp = GraphicsDevice.Viewport;
 
 			base.Draw(gameTime);
 		}

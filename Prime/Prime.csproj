@@ -59,6 +59,8 @@
     <Compile Include="Components\Graphical\GeonBit\Image.cs" />
     <Compile Include="Helpers\FloatMath.cs" />
     <Compile Include="Components\Collision\Physics\PhysicsProcessor.cs" />
+    <Compile Include="Components\Graphical\GeonBit\Header.cs" />
+    <Compile Include="Components\Graphical\GeonBit\Slider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

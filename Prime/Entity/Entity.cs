@@ -7,6 +7,8 @@ namespace Prime
 {
 	public class Entity
 	{
+		public bool Initialized { get; private set; }
+
 		private List<Component> components = new List<Component>();
 		public List<Component> Components
 		{
@@ -26,7 +28,7 @@ namespace Prime
 			set
 			{
 				drawOrder = value;
-				if(this.Scene != null)
+				if (this.Scene != null)
 					Scene.SortDraw(this);
 			}
 		}
@@ -41,7 +43,7 @@ namespace Prime
 			set
 			{
 				updateOrder = value;
-				if(this.Scene != null)
+				if (this.Scene != null)
 					Scene.SortUpdate(this);
 			}
 		}
@@ -63,29 +65,29 @@ namespace Prime
 			return c;
 		}
 
-        public T GetComponent<T>() where T : Component
-        {
-            foreach(var c in components)
-            {
-                if (c is T t)
-                    return t;
-            }
+		public T GetComponent<T>() where T : Component
+		{
+			foreach (var c in components)
+			{
+				if (c is T t)
+					return t;
+			}
 
-            return null;
-        }
-        
-        public List<T> GetComponents<T>() where T : Component
-        {
+			return null;
+		}
+
+		public List<T> GetComponents<T>() where T : Component
+		{
 			var res = new List<T>();
-        
-            foreach(var c in components)
-            {
-                if (c is T t)
-                    res.Add(t);
-            }
 
-            return res;
-        }
+			foreach (var c in components)
+			{
+				if (c is T t)
+					res.Add(t);
+			}
+
+			return res;
+		}
 
 		public void Destroy()
 		{
@@ -99,14 +101,14 @@ namespace Prime
 			destroyQueue.Add(c);
 		}
 
-		public virtual void Initialize() 
+		public virtual void Initialize()
 		{
-
+			this.Initialized = true;
 		}
 
 		public virtual void Draw(SpriteBatch sp)
 		{
-			foreach(var component in components)
+			foreach (var component in components)
 			{
 				component.Draw(sp);
 			}
@@ -114,7 +116,7 @@ namespace Prime
 
 		public virtual void Update()
 		{
-			foreach(var c in components)
+			foreach (var c in components)
 			{
 				c.Update();
 			}
@@ -129,6 +131,6 @@ namespace Prime
 		}
 
 		public virtual void OnDestroy()
-		{  }
+		{ }
 	}
 }

@@ -13,6 +13,9 @@ namespace Prime.UI
 		{
 			this.panel = new GeonBit.UI.Entities.Panel(size, PanelSkin.Default, (Anchor)a, offset);
 			this.Entity = this.panel;
+
+			this.panel.PanelOverflowBehavior = PanelOverflowBehavior.VerticalScroll;
+            this.panel.Scrollbar.AdjustMaxAutomatically = true;
 		}
 	}
 }

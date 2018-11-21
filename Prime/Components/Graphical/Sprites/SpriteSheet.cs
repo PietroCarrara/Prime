@@ -3,11 +3,12 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace Prime.Graphics
 {
-    public class SpriteSheet : Sprite
-    {
+	public class SpriteSheet : Sprite
+	{
 		private Point frameDimensions, texDimensions;
 
 		private Animation current;
@@ -22,8 +23,8 @@ namespace Prime.Graphics
 
 		private Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
 
-        public SpriteSheet(Texture2D tex, Point texDimensions, Point frameDimensions) : base(frameDimensions.X, frameDimensions.Y, frameDimensions.ToVector2() / 2f)
-        {
+		public SpriteSheet(Texture2D tex, Point texDimensions, Point frameDimensions) : base(frameDimensions.X, frameDimensions.Y, frameDimensions.ToVector2() / 2f)
+		{
 			this.Tex = tex;
 
 			this.texDimensions = texDimensions;
@@ -31,7 +32,7 @@ namespace Prime.Graphics
 
 			frameCount.X = texDimensions.X / frameDimensions.X;
 			frameCount.Y = texDimensions.Y / frameDimensions.Y;
-        }
+		}
 
 		public override float Width
 		{
@@ -70,49 +71,49 @@ namespace Prime.Graphics
 			animations.Add(name, a);
 		}
 
-        public void Play(string name, System.Action post = null)
-        {
+		public void Play(string name, System.Action post = null)
+		{
 			var anim = animations[name];
 
 			Play(anim, post);
-        }
+		}
 
 		private void Play(Animation a, System.Action post = null)
 		{
-			if(current != null && current.Name == a.Name)
+			if (current != null && current.Name == a.Name)
 				return;
 
 			elapsedTime = 0;
-			
-			if(post != null)
+
+			if (post != null)
 				a.OnComplete = post;
 
 			current = a;
 			currentFrame = current.Start;
 		}
 
-        public override void Update()
-        {
-            base.Update();
+		public override void Update()
+		{
+			base.Update();
 
 			elapsedTime += Time.DetlaTime;
-			
-			while(elapsedTime > current.FrameDuration)
+
+			while (elapsedTime > current.FrameDuration)
 			{
 				elapsedTime -= current.FrameDuration;
 				currentFrame++;
 			}
 
-			while(currentFrame >= current.End)
+			while (currentFrame >= current.End)
 			{
 				currentFrame -= current.End - current.Start;
 				current.OnComplete?.Invoke();
 				current.OnComplete = null;
 			}
-        }
+		}
 
-        public override void Draw(SpriteBatch sp)
-        {
+		public override void Draw(SpriteBatch sp)
+		{
 			int y = currentFrame / frameCount.X;
 			int x = currentFrame - y * frameCount.X;
 
@@ -120,7 +121,7 @@ namespace Prime.Graphics
 			y *= frameDimensions.Y;
 
 			base.sourceRectangle = new Rectangle(new Point(x, y), frameDimensions);
-        
+
 			base.Draw(sp);
 		}
 
@@ -146,9 +147,17 @@ namespace Prime.Graphics
 
 			return res;
 		}
-    }
 
-	class Animation
+		public Dictionary<string, Animation> Animations
+		{
+			get
+			{
+				return this.animations;
+			}
+		}
+	}
+
+	public class Animation
 	{
 		public string Name;
 		public int Start;
