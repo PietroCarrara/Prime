@@ -86,6 +86,177 @@
 	  <HintPath>..\..\Space\packages\Newtonsoft.Json.11.0.2\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
 	  <Private>False</Private>
 	</Reference>
+	<Reference Include="mscorlib">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\Profile\Profile111\mscorlib.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Core">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Core.dll</HintPath>
+	</Reference>
+	<Reference Include="Microsoft.CSharp">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\Microsoft.CSharp.dll</HintPath>
+	</Reference>
+	<Reference Include="Microsoft.VisualBasic">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\Microsoft.VisualBasic.dll</HintPath>
+	</Reference>
+	<Reference Include="mscorlib">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\mscorlib.dll</HintPath>
+	</Reference>
+	<Reference Include="System">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Collections">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Collections.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Collections.Concurrent">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Collections.Concurrent.dll</HintPath>
+	</Reference>
+	<Reference Include="System.ComponentModel">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.ComponentModel.dll</HintPath>
+	</Reference>
+	<Reference Include="System.ComponentModel.EventBasedAsync">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.ComponentModel.EventBasedAsync.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Diagnostics.Contracts">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Diagnostics.Contracts.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Diagnostics.Debug">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Diagnostics.Debug.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Diagnostics.Tools">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Diagnostics.Tools.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Diagnostics.Tracing">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Diagnostics.Tracing.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Dynamic.Runtime">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Dynamic.Runtime.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Globalization">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Globalization.dll</HintPath>
+	</Reference>
+	<Reference Include="System.IO">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.IO.dll</HintPath>
+	</Reference>
+	<Reference Include="System.IO.Compression">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.IO.Compression.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Linq">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Linq.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Linq.Expressions">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Linq.Expressions.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Linq.Parallel">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Linq.Parallel.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Linq.Queryable">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Linq.Queryable.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Net">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Net.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Net.Http">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Net.Http.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Net.NetworkInformation">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Net.NetworkInformation.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Net.Primitives">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Net.Primitives.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Net.Requests">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Net.Requests.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Numerics">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Numerics.dll</HintPath>
+	</Reference>
+	<Reference Include="System.ObjectModel">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.ObjectModel.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Reflection">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Reflection.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Reflection.Extensions">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Reflection.Extensions.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Reflection.Primitives">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Reflection.Primitives.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Resources.ResourceManager">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Resources.ResourceManager.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Runtime">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Runtime.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Runtime.Extensions">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Runtime.Extensions.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Runtime.InteropServices">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Runtime.InteropServices.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Runtime.InteropServices.WindowsRuntime">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Runtime.InteropServices.WindowsRuntime.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Runtime.Numerics">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Runtime.Numerics.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Runtime.Serialization">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Runtime.Serialization.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Runtime.Serialization.Json">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Runtime.Serialization.Json.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Runtime.Serialization.Primitives">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Runtime.Serialization.Primitives.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Runtime.Serialization.Xml">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Runtime.Serialization.Xml.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Security.Principal">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Security.Principal.dll</HintPath>
+	</Reference>
+	<Reference Include="System.ServiceModel.Web">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.ServiceModel.Web.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Text.Encoding">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Text.Encoding.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Text.Encoding.Extensions">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Text.Encoding.Extensions.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Text.RegularExpressions">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Text.RegularExpressions.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Threading">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Threading.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Threading.Tasks">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Threading.Tasks.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Threading.Tasks.Parallel">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Threading.Tasks.Parallel.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Windows">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Windows.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Xml">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Xml.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Xml.Linq">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Xml.Linq.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Xml.ReaderWriter">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Xml.ReaderWriter.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Xml.Serialization">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Xml.Serialization.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Xml.XDocument">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Xml.XDocument.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Xml.XmlSerializer">
+	  <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild-frameworks\.NETPortable\v4.5\System.Xml.XmlSerializer.dll</HintPath>
+	</Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
