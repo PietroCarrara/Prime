@@ -110,10 +110,6 @@ namespace Prime
 
 			Time.GameTime = gameTime;
 
-#if DEBUG
-			Debug.WriteLine("FPS: " + (1 / Time.DetlaTime));
-#endif
-
 			Input.Update();
 			Tasks.Update();
 
